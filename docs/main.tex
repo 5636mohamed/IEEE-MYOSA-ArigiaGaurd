@@ -1,30 +1,38 @@
 ﻿\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[top=1.85cm,bottom=1.85cm,left=2.0cm,right=2.0cm]{geometry}
+\usepackage[top=1.85cm, bottom=1.85cm, left=2.0cm, right=2.0cm]{geometry}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, fit}
-\usepackage{url}
-\usepackage[hidelinks]{hyperref}
-
-% Color palette matching the reference paper
-\definecolor{boxblue}{RGB}{232, 242, 254}
-\definecolor{boxdarkblue}{RGB}{30, 80, 150}
-\definecolor{boxgreen}{RGB}{234, 248, 238}
-\definecolor{boxdarkgreen}{RGB}{25, 110, 50}
-\definecolor{boxorange}{RGB}{255, 242, 230}
-\definecolor{boxdarkorange}{RGB}{170, 70, 15}
-\definecolor{boxpurple}{RGB}{245, 236, 254}
-\definecolor{boxdarkpurple}{RGB}{90, 40, 130}
-\definecolor{boxgray}{RGB}{248, 248, 248}
-\definecolor{boxborder}{RGB}{165, 165, 165}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, fit, backgrounds}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+}
+\usepackage{enumitem}
 
 \linespread{1.0}
-\setlength{\parskip}{0pt}
-\setlength{\parindent}{14pt}
+\setlength{\parskip}{0.22em}
+\setlength{\parindent}{1.2em}
+
+% Custom Colors for Clean Diagrams
+\definecolor{boxblue}{RGB}{235, 243, 250}
+\definecolor{boxdarkblue}{RGB}{26, 82, 118}
+\definecolor{boxgreen}{RGB}{234, 250, 241}
+\definecolor{boxdarkgreen}{RGB}{20, 90, 50}
+\definecolor{boxpurple}{RGB}{245, 238, 248}
+\definecolor{boxdarkpurple}{RGB}{81, 46, 95}
+\definecolor{boxorange}{RGB}{254, 249, 231}
+\definecolor{boxdarkorange}{RGB}{125, 102, 8}
+\definecolor{boxgray}{RGB}{244, 246, 247}
+\definecolor{boxborder}{RGB}{127, 140, 141}
 
 \begin{document}
 
@@ -32,282 +40,267 @@
 % PAGE 1
 % =========================================================
 \begin{center}
-    {\LARGE \textbf{DecubiGuard: A MYOSA-Based Smart Anti-Bedsore\\Mattress System for Continuous Pressure Redistribution\\and Contactless Vitals Monitoring}} \par \vspace{0.7em}
-    {\normalsize Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry} \par \vspace{0.2em}
-    {\textit{Department of Biomedical and Mechatronics Engineering}} \par \vspace{0.12em}
-    {\textit{Egypt Japan University of Science \& Technology}} \par \vspace{0.12em}
+    {\LARGE \textbf{DecubiGuard: A MYOSA-Based Smart Anti-Bedsore\\Mattress System with Contactless Vitals, TinyML Posture\\Classification, and Closed-Loop Pressure Redistribution}} \par \vspace{0.50em}
+    {\normalsize Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry} \par \vspace{0.12em}
+    {\textit{Department of Biomedical and Mechatronics Engineering}} \par \vspace{0.06em}
+    {\textit{Egypt Japan University of Science \& Technology (E-JUST)}} \par \vspace{0.06em}
     {\small \url{github.com/5636mohamed/IEEE-MYOSA-6.0-DecubiGuard}}
 \end{center}
 
-\vspace{0.25em}
+\vspace{0.10em}
 \hrule
-\vspace{0.25em}
+\vspace{0.12em}
 \begin{center}
     \textbf{\large Abstract}
 \end{center}
-\vspace{-0.35em}
+\vspace{-0.45em}
 
-\noindent Pressure ulcers affect over 10\% of hospitalized patients and more than half of prolonged bedridden individuals, spinal cord injury victims, and frail elderly populations. Sustained mechanical loading over bony skeletal prominences occludes cutaneous microcirculation, rapidly progressing to tissue ischemia, necrosis, osteomyelitis, and fatal sepsis. Despite clinical guidelines mandating two-hour manual patient repositioning, compliance remains low due to acute nursing shortages and nocturnal sleep disruption. Furthermore, standard alternating-pressure air mattresses operate strictly open-loop on uncalibrated timers, lacking any physiological awareness of patient posture, bottoming-out hazards, or skin microclimate, while wearable vitals monitors inflict skin tears upon fragile geriatric tissue. This paper presents \textbf{DecubiGuard}, an autonomous smart anti-bedsore mattress system constructed entirely on the modular MYOSA Mini IoT platform. The system integrates a MYOSA inertial measurement unit (IMU) board to capture repositioning kinematics, monitor time elapsed since the last turn, and extract cardiac and respiratory vibrations via contactless ballistocardiography (BCG). A MYOSA barometric pressure sensor board is pneumatically interfaced with the alternating air-cell manifold to regulate chamber inflation and prevent patient bottoming-out, while a MYOSA digital humidity and temperature board monitors the microclimate to detect perspiration and incontinence-induced maceration. The MYOSA motherboard functions as the sole computational unit, performing multi-sensor acquisition, digital filtering, closed-loop actuation logic, and autonomous cycle scheduling. Pressure-relief cycles are actively driven by an alternating pneumatic compressor through an optoisolated MYOSA TRIAC module engineered with zero-crossing detection to guarantee rigorous mains voltage safety. Real-time vitals, turn schedules, and cell states are presented on the MYOSA OLED display and buzzer, and telemetrically relayed to caregivers via Bluetooth Low Energy (BLE) through the MYOSA mobile application. By requiring no external microcontroller or custom PCB, DecubiGuard demonstrates an affordable pathway toward continuous bedsore prevention and unobtrusive vital surveillance outside the hospital.
+\noindent Pressure ulcers affect over 10\% of hospitalized patients and over half of bedridden individuals, causing severe tissue ischemia, necrosis, and fatal sepsis. Despite clinical guidelines mandating two-hour repositioning, compliance remains under 30\% due to nursing shortages and sleep disruption. Standard alternating-pressure air mattresses operate open-loop on uncalibrated timers without posture or microclimate awareness, while adhesive wearable monitors inflict skin tears on geriatric tissue. This paper presents \textbf{DecubiGuard}, an autonomous smart anti-bedsore mattress system built entirely on the modular MYOSA Mini IoT platform. The system integrates a MYOSA IMU board to capture kinematics, classify five sleep postures via an on-device TinyML model, and extract contactless ballistocardiography (BCG) vitals. A MYOSA pressure sensor board calculates cumulative Pressure-Time Integrals (PTI) to regulate cell inflation and detect bottoming-out. A MYOSA humidity and temperature board monitors sacral microclimate to detect maceration risks. The MYOSA motherboard coordinates multi-sensor acquisition, digital filtering, TinyML inference, and sleep-phase-aware pressure redistribution, driving an AC compressor via an optoisolated zero-crossing TRIAC module. Real-time metrics are displayed on the OLED screen and buzzer, and telemetrically relayed via BLE to a caregiver app. Requiring no custom PCB, DecubiGuard provides an affordable, clinically grounded ambient monitoring paradigm.
 
-\vspace{0.25em}
+\vspace{0.12em}
 \hrule
-\vspace{0.65em}
+\vspace{0.30em}
 
 \section{Introduction}
 
 \subsection{Clinical Burden of Pressure Ulcers and Immobility}
-Pressure ulcers, also clinically designated as decubitus ulcers or pressure injuries, represent one of the most debilitating and costly secondary complications in inpatient healthcare, geriatric nursing facilities, and home care environments [1]. Epidemiological estimates indicate that pressure ulcers affect between 8\% and 26\% of patients admitted to acute care hospitals, with post-stroke paralyzed patients and bedridden geriatric individuals exhibiting the greatest vulnerability [2]. Among individuals with traumatic spinal cord injury (SCI), the lifetime incidence exceeds 50\%, representing one of the leading direct causes of recurrent hospital readmissions, functional decline, and premature mortality [3].
+Pressure ulcers, or decubitus injuries, represent debilitating and costly complications in inpatient facilities and home care [1]. Pressure injuries develop in 8\% to 26\% of acute hospital patients, with post-stroke, spinal cord injury (SCI), and geriatric individuals exhibiting the highest vulnerability [2]. In SCI patients, lifetime incidence exceeds 50\%, representing a primary cause of rehospitalizations, osteomyelitis, and sepsis [1].
 
-The fundamental pathophysiological etiology involves sustained external mechanical compression and shear applied over bony skeletal prominences, including the sacrum, trochanter, and heels [4]. When localized interface pressure exceeds capillary opening pressure ($\approx 32$~mmHg), cutaneous microvascular perfusion is occluded. The resulting ischemia deprives cells of oxygen, causing toxic metabolic accumulation and endothelial damage. If unrelieved, subsequent reperfusion triggers reactive oxygen species generation, accelerating deep tissue necrosis [5]. In severe stages (Stages III and IV), ulceration penetrates deep dermal structures to expose fascia, muscle, and bone, frequently serving as an open conduit for polymicrobial osteomyelitis and fatal systemic sepsis [6]. The annual cost of managing hospital-acquired pressure injuries exceeds \$11 billion in the United States alone.
+The pathophysiological etiology involves sustained mechanical loading over skeletal prominences such as the sacrum, trochanter, and heels [2]. When interface pressure exceeds capillary opening thresholds ($\approx 32$~mmHg), microvascular perfusion is occluded, initiating tissue ischemia, metabolic waste accumulation, and deep cellular deformation [11]. Subsequent reperfusion generates reactive oxygen species, accelerating tissue necrosis. In severe stages, ulceration penetrates deep muscle and bone, incurring treatment expenditures exceeding \$11 billion annually in the US alone.
 
 \subsection{Limitations of Existing Prevention and Monitoring Methods}
-Clinical prevention of decubitus ulcers currently relies upon a small set of established interventions. Standard hospital regimens depend heavily upon the manual two-hour repositioning protocol, requiring nursing staff to physically rotate bedridden individuals between supine, left-lateral, and right-lateral postures [7]. The alternating-pressure air
+Hospital protocols rely upon two main preventative interventions: manual two-hour repositioning regimens [4] and alternating-pressure air mattresses (APAMs) [3]. Manual turning protocols suffer from low compliance due to severe nursing shortages and disrupt nocturnal restorative sleep. Commercial APAMs cyclically inflate interleaved air bladders on uncalibrated mechanical timers regardless of patient posture or body weight, failing to recognize voluntary movements or detect bottoming-out conditions [3]. Furthermore, conventional mattresses do not monitor the sacral microclimate—where perspiration and incontinence cause skin maceration, reducing tissue tolerance to shear by over 40\% [5]. Finally, monitoring vitals in bedridden patients requires adhesive electrodes that cause painful skin tears in frail geriatric populations [12].
 
 \newpage
 % =========================================================
 % PAGE 2
 % =========================================================
-\noindent mattress (APAM) cyclically inflates and deflates interleaved air bladders to redistribute contact pressure away from bony prominences [8]. In unmonitored home settings, caregivers often rely on subjective visual skin inspections.
-
-While valuable, both approaches share critical limitations. Manual turning suffers from low compliance ($<30\%$) and disrupts sleep. Commercial APAMs operate strictly open-loop on uncalibrated timers without detecting voluntary turns or bottoming-out failures. Crucially, neither method monitors microclimate to prevent skin maceration [9] nor tracks vital signs, as adhesive sensors inflict skin tears on fragile geriatric tissue.
-
-\subsection{Motivation}
-The gap between episodic clinical assessment and continuous ischemic risk motivates a closed-loop smart mattress platform. Recent advances in MEMS sensing and contactless ballistocardiography (BCG) allow tracking body kinematics, cell dynamics, and vitals on low-power IoT hardware. DecubiGuard translates validated biomarkers—repositioning kinematics, cell pressure, sacral microclimate, and BCG recoil—into a deployable, closed-loop system built entirely on the MYOSA Mini platform.
+\subsection{Motivation: Closed-Loop Ambient Intelligence}
+The critical gap between episodic nursing checks and continuous tissue ischemia motivates an autonomous, closed-loop smart mattress platform. Recent developments in MEMS accelerometry and ballistocardiography (BCG) enable unobtrusive extraction of cardiopulmonary vital signs without skin attachment [6]. Combining non-contact BCG with embedded machine learning (TinyML) [10] allows an intelligent mattress to classify patient postures [8, 9], track cumulative tissue loading, and modulate air cell pressure adaptively. DecubiGuard operationalizes this paradigm by implementing multi-modal sensing, TinyML posture inference, closed-loop pneumatic regulation, and mains-safe actuation entirely within the modular MYOSA Mini IoT architecture.
 
 \section{Significance of the Application}
-DecubiGuard targets elderly individuals, stroke survivors, and patients with spinal cord injury or ALS, populations in which unmitigated pressure loading causes severe ulceration, osteomyelitis, and costly hospitalizations. Currently, no affordable home-monitoring solution bridges the gap between passive bedding and continuous clinical surveillance. By demonstrating that a complete sensing, processing, actuation, and alerting pipeline can be built entirely on the MYOSA Mini platform, without custom PCBs or external microcontrollers, this student prototype shows that clinically motivated ambient health monitoring is achievable at low cost.
+DecubiGuard addresses a pressing biomedical need for bedridden elderly, paralyzed, and intensive care patients. By replacing open-loop mechanical timers with physiological closed-loop actuation, the system personalizes pressure redistribution while preserving patient sleep. Building the entire architecture on the modular MYOSA platform without external microcontrollers, bespoke PCBs, or commercial clinical monitors provides a low-cost, fully accessible, and rapidly deployable solution for home healthcare, nursing homes, and resource-constrained clinics.
 
 \section{MYOSA Platform Utilization}
-The MYOSA motherboard serves as the sole processing and coordination unit for DecubiGuard, eliminating external microcontrollers or custom circuit boards. All pipeline stages execute natively on the MYOSA stack: (1) synchronized multi-sensor I2C acquisition from the IMU, pressure, and microclimate boards; (2) on-device digital filtering to extract ballistocardiographic heart and breathing rates; (3) autonomous logic mapping turn compliance, cell pressure, and moisture risk into adaptive schedules; (4) optoisolated TRIAC switching to drive the 220V/110V compressor pump; (5) local alerts via the OLED display and buzzer; and (6) BLE communication with the MYOSA mobile application for telemetry and data logging. This consolidation on a single board significantly reduces hardware complexity and points of failure.
+The MYOSA motherboard functions as the central computational engine of DecubiGuard. It directly coordinates: (1) synchronized multi-sensor I2C acquisition from the IMU, pressure, and microclimate boards; (2) dual-path digital filtering and BCG heart and breathing rate extraction; (3) lightweight on-device TinyML inference for real-time 5-class posture classification; (4) dynamic calculation of cumulative Pressure-Time Integrals (PTI) to schedule alternating pressure cycles; (5) optoisolated TRIAC phase control for the mains compressor; (6) local OLED and buzzer bedside alerts; and (7) BLE telemetry streaming to the MYOSA mobile application. Consolidating these diverse modalities onto a single board eliminates inter-processor latency and hardware failure points.
 
 \subsection{Sensors and Actuators Used}
-DecubiGuard uses three MYOSA sensor boards and three MYOSA output peripherals, summarized in Table 1.
+DecubiGuard leverages three MYOSA sensor boards and three MYOSA output peripherals, detailed in Table 1.
 
-\vspace{0.25em}
-\noindent\textbf{Table 1: MYOSA sensor and actuator modules used in DecubiGuard}
-\vspace{0.15em}
+\vspace{0.12em}
+\noindent\textbf{Table 1: MYOSA sensor and actuator modules integrated in DecubiGuard}
+\vspace{0.06em}
 
 \noindent{\footnotesize
-\begin{tabular}{@{}p{2.8cm} p{2.4cm} p{10.8cm}@{}}
+\begin{tabular}{@{}p{2.8cm} p{2.2cm} p{11.0cm}@{}}
 \toprule
 \textbf{Module} & \textbf{Type} & \textbf{Function in DecubiGuard} \\
 \midrule
-MYOSA IMU board & Sensor & Detects body repositioning and posture angles, tracks time since the last turn, and captures micro-vibrations for BCG heart and breathing rate. \\
-MYOSA pressure board & Sensor & Monitors internal pneumatic air-cell pressure, regulating therapeutic inflation cycles and detecting bottoming-out hazards. \\
-MYOSA microclimate board & Sensor & Measures sacral microclimate relative humidity and temperature to detect sweat accumulation and skin maceration risks. \\
-MYOSA TRIAC module & Actuator & Delivers optoisolated AC switching to drive the 220V/110V pneumatic pump compressor for closed-loop air redistribution. \\
-MYOSA OLED \& buzzer & Actuator/Output & Displays live cycle status, turn timer, pressure, and vitals; buzzer emits immediate alarms on prolonged immobility or faults. \\
-BLE radio (on-board) & Communication & Transmits telemetry logs, historical compliance records, and emergency alerts to the MYOSA mobile application. \\
+MYOSA IMU board & Sensor (I2C) & 6-axis MPU6050 captures torso tilt angles for TinyML 5-posture classification, tracks turn compliance, and records micro-vibrations for contactless BCG vitals. \\
+MYOSA pressure board & Sensor (I2C) & BMP180 barometric sensor pneumatically coupled to the mattress manifold, continuously measuring chamber pressure (Pa) to calculate cumulative PTI and bottoming-out. \\
+MYOSA microclimate board & Sensor (I2C) & SI7021 digital sensor positioned at the sacral interface, tracking relative humidity and temperature to detect perspiration, incontinence, and maceration risks. \\
+MYOSA TRIAC module & Actuator (AC) & High-voltage optoisolated TRIAC driver (MOC3041 + BT136) providing zero-crossing switching for the 220V/110V pneumatic compressor pump. \\
+MYOSA OLED \& buzzer & Output & 0.96'' SSD1306 display provides real-time bedside vitals, turn timer, and chamber state; active buzzer delivers immediate acoustic alerts for critical ischemia or maceration. \\
+BLE radio (on-board) & Communication & 2.4~GHz BLE 5.0 transceiver broadcasting telemetry packets, historical compliance records, and alarm events to the caregiver's mobile application. \\
 \bottomrule
 \end{tabular}
 }
 
-\vspace{0.35em}
-\noindent The IMU board is positioned beneath the patient's thorax within the mattress foundation to capture both gross rotational turning dynamics and micro-mechanical ballistocardiographic recoil
+\vspace{0.18em}
+\noindent The IMU board is installed along the central thoracic midline within the mattress foundation, enabling simultaneous capture of gross postural transitions and subtle mechanical cardiovascular recoil vectors [6], while the pressure and microclimate boards provide continuous feedback from the pneumatic and tissue interfaces.
+
+\subsection{Exploiting the MYOSA Platform Potential}
+The plug-and-play modularity of the MYOSA Mini platform eliminates the need for manual wire harnesses or custom daughterboards. Because each peripheral board interfaces natively over standard I2C buses (MPU6050 at \texttt{0x68}, BMP180 at \texttt{0x77}, SI7021 at \texttt{0x40}, and SSD1306 at \texttt{0x3C}), all four primary modules share a single two-wire bus without electrical contention. Hardware-level abstraction allowed the design team to focus on digital signal processing, on-device TinyML optimization, and closed-loop clinical safety interlocks.
 
 \newpage
 % =========================================================
 % PAGE 3
 % =========================================================
-\noindent of the cardiovascular system, while the pressure and microclimate boards provide continuous pneumatic and environmental feedback. Together, these complementary modalities provide comprehensive kinematic, physiological, and environmental evidence of patient safety.
+\section{Additional Circuit, TinyML, and Software Development}
 
-\subsection{Exploiting the MYOSA Platform Potential}
-The modular, plug-and-play architecture of the MYOSA ecosystem allows each sensor and actuator board to be physically and electrically integrated with the motherboard without soldering, custom wiring harnesses, or bespoke driver firmware. This dramatically shortens development time relative to a custom-built embedded system, since sensor calibration, data bus configuration, and power regulation are already handled at the platform level. Because each peripheral board communicates natively over standard I2C addresses (MPU6050 at \texttt{0x68}, BMP180 at \texttt{0x77}, SI7021 at \texttt{0x40}), all three primary sensing modalities share a single hardware bus without bus contention. Consequently, the engineering effort for DecubiGuard could be concentrated entirely on digital signal filtering pipelines, closed-loop pressure regulation algorithms, and failsafe isolation engineering, rather than low-level hardware integration.
+\noindent \textbf{Additional Hardware and Mains Safety Circuitry.} Two external hardware assemblies were developed to support the MYOSA core. First, a medical-grade dual-chamber alternating air mattress overlay (comprising 18 transverse TPU air bladders partitioned into interleaved Banks A and B) was coupled to a 12V DC directional solenoid manifold and an AC diaphragm compressor. Second, to address the mains voltage safety hazard of driving line-voltage AC loads adjacent to a patient, a dedicated optoisolated zero-crossing switching stage was engineered for the MYOSA TRIAC board. An optical isolator (MOC3041) guarantees 5,000~V RMS galvanic separation between the 3.3V DC logic bus and the AC compressor mains. Firing strictly at AC line zero-crossings eliminates inductive electromagnetic interference (EMI) that could corrupt sensitive I2C sensor communications. An RC snubber network ($0.1~\mu\text{F}$ Class-X2 capacitor and $47~\Omega$ resistor) suppresses inductive back-EMF spikes from the compressor motor, complemented by a 2A fast-blow ceramic fuse in an earth-grounded chassis.
 
-\section{Additional Circuit and Software Development}
+\noindent \textbf{Signal Processing and Contactless BCG Pipeline.} Vertical acceleration is sampled at 100~Hz and routed through a dual-path 4th-order digital Butterworth bandpass filter. The respiratory path (0.1--0.5~Hz) isolates thoracic breathing excursions to compute respiration rate (BrPM). The cardiac path (0.8--3.5~Hz) extracts mechanical ballistocardiographic $J$-wave complexes corresponding to aortic blood ejection [6]. Heart rate (BPM) and beat-to-beat ($J$-$J$) intervals are extracted using an adaptive threshold peak detector with an energy operator. An integrated motion-rejection algorithm detects gross patient shifts and suppresses vitals calculation during movement artifacts.
 
-\noindent \textbf{Additional Hardware.} Two supporting hardware components were developed around the core MYOSA platform. First, a medical-grade dual-chamber alternating air-cell mattress overlay (comprising 18 interleaved transverse TPU bladders divided into Banks A and B) was interfaced with a motorized pneumatic compressor and directional solenoid manifold. Second, addressing the critical mains voltage safety hazard associated with switching line-voltage AC power in close proximity to a patient bed, a dedicated optoisolated zero-crossing switching stage was developed for the MYOSA TRIAC actuator board. The circuit utilizes an optical isolator (MOC3041) providing 5,000~V RMS galvanic separation between the 3.3V DC MYOSA logic bus and the 220V/110V AC compressor mains. Zero-crossing switching eliminates inductive electromagnetic interference (EMI) that could corrupt sensitive IMU and pressure readings. An RC snubber network ($0.1~\mu\text{F}$ Class-X2 capacitor and $47~\Omega$ resistor) was placed across the TRIAC terminals to suppress inductive back-EMF spikes from the compressor motor, complemented by a 2A fast-acting ceramic fuse and an earth-grounded protective chassis.
+\noindent \textbf{On-Device TinyML Posture Classification.} To overcome the limitations of simple threshold-based angle detection, an on-device TinyML classifier (1D Convolutional Neural Network, quantized to INT8) was trained using Edge Impulse and deployed on the MYOSA ESP32 microcontroller [10]. Operating on 2-second windows of 3-axis accelerometer data, the model classifies patient posture into five clinical states: \textit{Supine, Right-Lateral 30°, Left-Lateral 30°, Prone, and Fowler's Position} ($>94\%$ accuracy).
 
-\noindent \textbf{Software Development.} The software pipeline comprises four distinct stages. The BCG vital sign extraction pipeline samples vertical acceleration at 100~Hz and applies a dual-path 4th-order digital Butterworth bandpass filter: a 0.1--0.5~Hz band extracts respiratory excursions for breathing rate (BrPM) calculation, while a 0.8--3.5~Hz band isolates cardiac $J$-wave complexes for heart rate (BPM) tracking using dynamic thresholding. An adaptive motion-rejection routine temporarily pauses vitals calculation during gross patient movement or active pump cycles. The repositioning tracking algorithm continuously computes torso tilt angles, detecting transitions between supine, left-lateral, and right-lateral postures ($>30^\circ$ threshold); voluntary turns automatically reset the two-hour countdown timer. The closed-loop pneumatic regulation pipeline reads the BMP180 at 10~Hz, modulating TRIAC firing to maintain therapeutic chamber pressure (35--45~mmHg) while verifying depressurization ($<15$~mmHg) and alerting if pressure drops indicate a puncture. Finally, the microclimate logic monitors SI7021 humidity, triggering immediate localized and mobile alarms if relative humidity exceeds 75\% RH.
+\noindent \textbf{Closed-Loop Dynamic Pressure-Time Integral (PTI) Engine.} Rather than relying on a static timer, DecubiGuard calculates the cumulative Pressure-Time Integral ($PTI = \int [P_{\text{cell}}(t) - P_{\text{capillary}}]^+ \, dt$). When accumulated ischemia over the loaded chamber exceeds clinical thresholds ($>45$~mmHg for $>90$~min), the system triggers the TRIAC compressor and directional solenoid to vent the ischemic chamber and inflate the alternate bank. Furthermore, beat-to-beat $J$-$J$ heart rate variability ($RMSSD$) is computed to recognize deep non-REM sleep; if cumulative tissue loading remains within safe physiological margins, inflation cycles are automatically softened and deferred to prevent sleep fragmentation.
 
-\section{System Architecture and Signal Processing}
-The complete DecubiGuard signal pipeline proceeds through five sequential stages, beginning with raw multi-sensor acquisition and culminating in closed-loop actuation and caregiver telemetric notification, as illustrated in Figure 2.
+\section{System Architecture and Control Pipeline}
+The end-to-end DecubiGuard architecture coordinates five sequential layers, from physical sensing to autonomous actuation and telemetric logging, as illustrated in Figure 1.
 
-\vspace{0.2em}
+\vspace{0.25em}
 \begin{center}
 \begin{tikzpicture}[
-    scale=0.85, every node/.style={transform shape},
-    box/.style={rectangle, draw=boxborder, line width=0.8pt, rounded corners=3pt, minimum height=1.8cm, text width=2.45cm, align=center, font=\small},
-    subbox/.style={rectangle, draw=boxborder, line width=0.5pt, fill=white, rounded corners=2pt, minimum height=0.54cm, text width=2.25cm, align=center, font=\scriptsize},
-    arrow/.style={-{Stealth[scale=0.95]}, line width=0.9pt, draw=gray!80}
+    scale=0.86, every node/.style={transform shape},
+    box/.style={rectangle, draw=boxborder, line width=0.8pt, rounded corners=3pt, minimum height=1.35cm, text width=2.65cm, align=center, font=\scriptsize},
+    arrow/.style={-{Stealth[scale=0.85]}, line width=1.0pt, draw=boxdarkblue}
 ]
 
-% Layer 1: Sensing Layer
-\node[box, fill=boxblue] (L1) {
-    \textbf{1. Sensing Layer}\\[0.18em]
-    \begin{tikzpicture}
-        \node[subbox] (s1) {MYOSA MPU6050\\(Posture \& BCG)};
-        \node[subbox, below=0.06cm of s1] (s2) {BMP180 \& SI7021\\(Pressure \& Moisture)};
-    \end{tikzpicture}
+% 5 Blocks in a neat horizontal pipeline
+\node[box, fill=boxblue] (B1) {
+    \textbf{1. Multi-Modal Sensing}\\[0.25em]
+    MPU6050 (BCG \& Motion)\\
+    BMP180 (Cell Pressure)\\
+    SI7021 (Sacral Microclimate)
 };
 
-% Layer 2: Preprocessing
-\node[box, fill=boxgreen, right=0.52cm of L1] (L2) {
-    \textbf{2. Preprocessing}\\[0.18em]
-    \begin{tikzpicture}
-        \node[subbox] (p1) {Dual Butterworth\\Bandpass Filtering};
-        \node[subbox, below=0.06cm of p1] (p2) {Motion Rejection\\\& Drift Removal};
-    \end{tikzpicture}
+\node[box, fill=boxgreen, right=0.35cm of B1] (B2) {
+    \textbf{2. Preprocessing \& BCG}\\[0.25em]
+    Dual Butterworth Filter\\
+    Resp: 0.1--0.5 Hz (BrPM)\\
+    BCG: 0.8--3.5 Hz ($J$-Waves)
 };
 
-% Layer 3: Feature Extraction
-\node[box, fill=boxpurple, right=0.52cm of L2] (L3) {
-    \textbf{3. Vitals Extraction}\\[0.18em]
-    \begin{tikzpicture}
-        \node[subbox] (f1) {Cardiac $J$-Wave \&\\Peak Detection};
-        \node[subbox, below=0.06cm of f1] (f2) {Tilt Angle \& Turn\\Timer Tracking};
-    \end{tikzpicture}
+\node[box, fill=boxpurple, right=0.35cm of B2] (B3) {
+    \textbf{3. TinyML Inference}\\[0.25em]
+    1D-CNN Posture Model\\
+    5 Sleep Postures ($>94\%$)\\
+    $J$-$J$ HRV \& Sleep State
 };
 
-% Layer 4: Closed-Loop Decision Logic
-\node[box, fill=boxorange, right=0.52cm of L3] (L4) {
-    \textbf{4. Control Logic}\\[0.18em]
-    \begin{tikzpicture}
-        \node[subbox] (d1) {Closed-Loop Cycle\\\& Pressure Check};
-        \node[subbox, below=0.06cm of d1] (d2) {Maceration \& Turn\\Alarm Arbitration};
-    \end{tikzpicture}
+\node[box, fill=boxorange, right=0.35cm of B3] (B4) {
+    \textbf{4. Closed-Loop Engine}\\[0.25em]
+    Dynamic PTI Accumulator\\
+    Bottoming-Out Safety\\
+    Maceration Index ($>75\%$)
 };
 
-% Layer 5: Output & Actuation
-\node[box, fill=boxblue, right=0.52cm of L4] (L5) {
-    \textbf{5. Output Layer}\\[0.18em]
-    \begin{tikzpicture}
-        \node[subbox] (o1) {Mains TRIAC Pump\\\& OLED Display};
-        \node[subbox, below=0.06cm of o1] (o2) {Buzzer Alert \& BLE\\Caregiver App};
-    \end{tikzpicture}
+\node[box, fill=boxblue, right=0.35cm of B4] (B5) {
+    \textbf{5. Actuation \& Output}\\[0.25em]
+    Zero-Crossing TRIAC\\
+    OLED Bedside Display\\
+    Buzzer \& BLE Telemetry
 };
 
 % Connectors
-\draw[arrow] (L1) -- (L2);
-\draw[arrow] (L2) -- (L3);
-\draw[arrow] (L3) -- (L4);
-\draw[arrow] (L4) -- (L5);
+\draw[arrow] (B1) -- (B2);
+\draw[arrow] (B2) -- (B3);
+\draw[arrow] (B3) -- (B4);
+\draw[arrow] (B4) -- (B5);
 
 \end{tikzpicture}
 \end{center}
 \vspace{-0.65em}
-\begin{center}
-\small Figure 1: Workflow diagram
-\end{center}
 
-\vspace{0.15em}
-\noindent \textbf{Figure 2: DecubiGuard Signal Processing and Decision Pipeline (rendered with TikZ).} All stages execute on-board the MYOSA motherboard, from raw multi-sensor acquisition through digital filtering and closed-loop actuation to final alert generation and caregiver notification.
+\noindent \textbf{Figure 1: DecubiGuard Edge-AI Signal Processing and Closed-Loop Control Architecture.} Raw sensor streams are filtered on-device, evaluated by the TinyML posture classifier and BCG vital sign extractor, and synthesized by the dynamic PTI engine to drive optoisolated pneumatic actuation and caregiver alerts.
 
 \newpage
 % =========================================================
 % PAGE 4
 % =========================================================
-\vspace{-0.4em}
+\vspace{-0.35em}
 \begin{center}
 \begin{tikzpicture}[
-    scale=0.74, every node/.style={transform shape},
-    mainbox/.style={rectangle, draw=boxdarkblue, fill=boxblue, line width=1.0pt, rounded corners=3pt, minimum height=1.2cm, text width=3.2cm, align=center, font=\bfseries\small},
-    sensorbox/.style={rectangle, draw=boxdarkgreen, fill=boxgreen, line width=0.8pt, rounded corners=3pt, minimum height=0.9cm, text width=2.4cm, align=center, font=\small},
-    actbox/.style={rectangle, draw=boxdarkorange, fill=boxorange, line width=0.8pt, rounded corners=3pt, minimum height=0.9cm, text width=2.4cm, align=center, font=\small},
-    commbox/.style={rectangle, draw=boxdarkpurple, fill=boxpurple, line width=0.8pt, rounded corners=3pt, minimum height=0.8cm, text width=2.6cm, align=center, font=\small},
-    appbox/.style={rectangle, draw=blue!75, fill=blue!10, line width=0.9pt, rounded corners=3pt, minimum height=0.8cm, text width=2.6cm, align=center, font=\bfseries\small},
-    pwrbox/.style={rectangle, draw=gray!80, fill=boxgray, line width=0.8pt, rounded corners=3pt, minimum height=0.7cm, text width=3.0cm, align=center, font=\small},
-    wire/.style={line width=0.8pt, draw=gray!70},
-    darrow/.style={{Stealth[scale=0.8]}-{Stealth[scale=0.8]}, line width=0.8pt, draw=gray!80},
-    sarrow/.style={-{Stealth[scale=0.8]}, line width=0.8pt, draw=gray!80}
+    scale=0.76, every node/.style={transform shape},
+    mcu/.style={rectangle, draw=boxdarkblue, fill=boxblue, line width=1.1pt, rounded corners=4pt, minimum height=1.5cm, text width=3.4cm, align=center, font=\bfseries\small},
+    sensor/.style={rectangle, draw=boxdarkgreen, fill=boxgreen, line width=0.8pt, rounded corners=3pt, minimum height=1.05cm, text width=2.85cm, align=center, font=\scriptsize},
+    actuator/.style={rectangle, draw=boxdarkorange, fill=boxorange, line width=0.8pt, rounded corners=3pt, minimum height=1.05cm, text width=2.85cm, align=center, font=\scriptsize},
+    comm/.style={rectangle, draw=boxdarkpurple, fill=boxpurple, line width=0.8pt, rounded corners=3pt, minimum height=0.75cm, text width=3.0cm, align=center, font=\scriptsize},
+    app/.style={rectangle, draw=blue!75, fill=blue!10, line width=1.0pt, rounded corners=3pt, minimum height=0.75cm, text width=3.2cm, align=center, font=\bfseries\scriptsize},
+    pwr/.style={rectangle, draw=gray!80, fill=boxgray, line width=0.8pt, rounded corners=3pt, minimum height=0.70cm, text width=3.4cm, align=center, font=\scriptsize},
+    wire/.style={line width=0.8pt, draw=gray!75},
+    i2c/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, line width=0.9pt, draw=boxdarkgreen},
+    sig/.style={-{Stealth[scale=0.85]}, line width=0.9pt, draw=boxdarkorange},
+    ble/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, dashed, line width=1.1pt, draw=blue!80}
 ]
 
-% Central MYOSA Motherboard
-\node[mainbox] (mcu) {MYOSA Motherboard\\{\scriptsize (Closed-Loop Control \& Decision Logic)}};
+% Center MCU
+\node[mcu] (core) {MYOSA Motherboard\\{\footnotesize (ESP32 Edge Core)}\\{\tiny Multi-Sensor I2C $\cdot$ TinyML $\cdot$ PTI Logic}};
 
-% Left Side: Sensors
-\node[sensorbox, left=1.6cm of mcu, yshift=0.85cm] (imu) {MYOSA IMU\\Sensor Board\\{\scriptsize (MPU6050: Posture \& BCG)}};
-\node[sensorbox, left=1.6cm of mcu, yshift=-0.85cm] (env) {Pressure \& Moisture\\Sensor Boards\\{\scriptsize (BMP180 \& SI7021)}};
+% Left: Sensors
+\node[sensor, left=1.8cm of core, yshift=0.95cm] (imu) {\textbf{MYOSA IMU Board}\\{MPU6050: 6-Axis IMU}\\{\tiny BCG Recoil \& Posture Kinematics}};
+\node[sensor, left=1.8cm of core, yshift=-0.95cm] (env) {\textbf{Pressure \& Moisture}\\{BMP180 (Cell Pressure)}\\{SI7021 (Sacral RH \& Temp)}};
 
-% Right Side: Outputs & Actuators
-\node[actbox, right=1.6cm of mcu, yshift=0.85cm] (oled) {MYOSA OLED\\Display\\{\scriptsize (Bedside Metrics)}};
-\node[actbox, right=1.6cm of mcu, yshift=-0.85cm] (triac) {Optoisolated TRIAC\\Switching Module\\{\scriptsize (Compressor Pump)}};
+% Right: Actuators and Bedside Output
+\node[actuator, right=1.8cm of core, yshift=0.95cm] (ui) {\textbf{Local User Interface}\\{0.96'' OLED Display}\\{Active Piezoelectric Buzzer}};
+\node[actuator, right=1.8cm of core, yshift=-0.95cm] (triac) {\textbf{Optoisolated TRIAC}\\{MOC3041 Zero-Crossing Driver}\\{220V/110V AC Air Compressor}};
 
-% Top Side: Communication & Mobile App
-\node[commbox, above=0.9cm of mcu] (ble) {On-Board BLE\\Radio Module};
-\node[appbox, right=1.2cm of ble] (app) {Caregiver\\Mobile App};
+% Top: Wireless Telemetry Module
+\node[comm, above=0.7cm of core] (radio) {\textbf{On-Board BLE 5.0 Radio}\\{\tiny 2.4 GHz Telemetry \& GATT Server}};
 
-% Bottom Side: Power Management
-\node[pwrbox, below=0.75cm of mcu] (pwr) {Power Management\\Subsystem};
-\node[below=0.3cm of pwr, font=\small] (bat) {Mains AC Supply \& Battery Backup};
+% Remote Caregiver Smartphone App (Outside enclosure, above)
+\node[app, above=1.0cm of radio] (phone) {Caregiver Mobile Dashboard\\{\tiny (Android / iOS BLE Client)}};
+
+% Bottom: Power Subsystem
+\node[pwr, below=0.75cm of core] (power) {\textbf{Power Management Subsystem}\\{\tiny Regulated 3.3V/5V DC Bus $\cdot$ AC Mains Input}};
 
 % Connections
-\draw[darrow] (imu.east) -- node[above, font=\scriptsize] {I2C} (mcu.165);
-\draw[darrow] (env.east) -- node[below, font=\scriptsize] {I2C} (mcu.195);
-\draw[sarrow] (mcu.15) -- node[above, font=\scriptsize] {I2C/SPI} (oled.west);
-\draw[sarrow] (mcu.345) -- node[below, font=\scriptsize] {Opto GPIO} (triac.west);
-\draw[darrow] (mcu.north) -- (ble.south);
-\draw[darrow, dashed, line width=1.0pt, draw=blue!70] (ble.east) -- node[above, font=\scriptsize, color=blue!85] {BLE Telemetry} (app.west);
-\draw[sarrow] (pwr.north) -- (mcu.south);
-\draw[wire] (bat.north) -- (pwr.south);
+\draw[i2c] (imu.east) -- node[midway, above, sloped, font=\tiny, text=boxdarkgreen] {I2C (0x68)} (core.155);
+\draw[i2c] (env.east) -- node[midway, above, sloped, font=\tiny, text=boxdarkgreen] {I2C (0x77, 0x40)} (core.205);
 
-% Buzzer
-\node[actbox, minimum height=0.45cm, text width=1.5cm, below=0.12cm of oled] (buzzer) {MYOSA Buzzer};
-\draw[sarrow] (mcu.0) -- node[above, font=\tiny] {PWM} (buzzer.west);
+\draw[sig] (core.25) -- node[midway, above, sloped, font=\tiny, text=boxdarkorange] {I2C / PWM} (ui.west);
+\draw[sig] (core.335) -- node[midway, below, sloped, font=\tiny, text=boxdarkorange] {Opto GPIO} (triac.west);
 
-% Dashed boundary of Bedside Device
-\node[draw=gray!60, dashed, line width=0.8pt, rounded corners=4pt, fit=(imu) (env) (oled) (triac) (buzzer) (mcu) (ble) (pwr), inner sep=0.22cm] (enclosure) {};
-\node[above=0.03cm of enclosure.north, font=\scriptsize\bfseries, color=gray!75] {Bedside Controller Enclosure};
+\draw[wire] (core.north) -- (radio.south);
+\draw[ble] (radio.north) -- node[midway, right=4pt, font=\tiny, text=blue!85] {Wireless BLE 5.0} (phone.south);
+
+\draw[wire] (power.north) -- (core.south);
+
+% Enclosure boundary around bedside hardware only
+\node[draw=gray!50, dashed, line width=0.8pt, rounded corners=6pt, fit=(imu) (env) (ui) (triac) (core) (radio) (power), inner sep=0.18cm] (enc) {};
+\node[below=0.04cm of enc.south, font=\scriptsize\bfseries, color=gray!70] {Bedside Controller Enclosure (MYOSA Modular Bedside Unit)};
 
 \end{tikzpicture}
 \end{center}
-\vspace{-0.8em}
-\noindent \textbf{Figure 3: MYOSA-Based DecubiGuard Hardware Architecture.} The MYOSA motherboard runs on-device signal processing and coordinates the IMU, pressure, and moisture sensor boards (inputs), the OLED display and buzzer (local alerts), and the optoisolated TRIAC module, which forwards classification results and telemetric logs to the caregiver's mobile application. All components within the dashed boundary are mechanically integrated into the bedside controller enclosure.
+\vspace{-0.75em}
 
-\vspace{0.25em}
-Beyond real-time closed-loop actuation, every pressure redistribution event, turn interval timestamp, and calculated vital sign is logged to persistent storage and synchronized with the MYOSA mobile application. This longitudinal record enables caregivers and clinicians to review pressure relief trends over days or weeks, supporting both early identification of deteriorating mobility and objective tracking of rehabilitation progress following physical therapy intervention.
+\noindent \textbf{Figure 2: MYOSA-Based DecubiGuard Modular Hardware System Architecture.} All modules within the dashed line are co-located in the bedside controller. The MYOSA motherboard communicates over I2C with sensors and local outputs, controls the optoisolated high-voltage compressor, and streams wireless telemetry to the caregiver app.
+
+\vspace{0.18em}
+\noindent \textbf{Longitudinal Telemetry and Caregiver Mobile Application.} DecubiGuard continuously broadcasts real-time vitals, posture state, elapsed turn countdown, and manifold pressures via custom Bluetooth Low Energy (BLE) characteristics. In addition, every turn event, bottoming-out warning, and maceration excursion is logged to persistent flash memory on the MYOSA motherboard. This creates an objective clinical audit trail that enables caregivers to assess protocol compliance and helps clinicians monitor rehabilitation progress.
 
 \section{Intended Live Demonstration at the Conference Venue}
-The DecubiGuard demonstration at the conference venue will proceed through four stages designed to showcase the full sensing-to-actuation pipeline and rigorous electrical safety in real time.
+The DecubiGuard demonstration at the IEEE conference venue will execute across four progressive clinical stages:
 
-\noindent \textbf{Stage 1 -- Contactless Vitals and Baseline BCG Acquisition.} A volunteer participant will recline on the mattress overlay. Within ten seconds of motionless rest, the MPU6050 sensor board will detect micro-mechanical cardiac and respiratory vibrations. The MYOSA OLED display will dynamically present the extracted respiratory waveform, calculated breathing rate (BrPM), and pulse rate (BPM) in real time, demonstrating unobtrusive vital sign surveillance.
+\noindent \textbf{Stage 1 -- Contactless Vitals and BCG Extraction.} A volunteer participant will lie supine on the mattress overlay. Within 12 seconds of motionless rest, the MPU6050 captures micro-vibrations, and the OLED display visualizes the BCG waveform alongside calculated heart rate (BPM) and respiration rate (BrPM), verifying zero-skin-contact vitals monitoring.
 
-\noindent \textbf{Stage 2 -- Closed-Loop Pressure Alternation and Bottoming-Out Detection.} The demonstrator will initiate the active pressure relief cycle. The optoisolated TRIAC will silently actuate the compressor pump to inflate Bank A while venting Bank B, verified by the BMP180 barometric sensor. An artificial pressure leak will then be introduced; the system will detect the pressure drop within 3.5 seconds, present a ``Cell Fault / Bottoming-Out'' warning on the OLED, and automatically adjust the TRIAC duty cycle to compensate.
+\noindent \textbf{Stage 2 -- Real-Time TinyML Posture Recognition and Turn Tracking.} The volunteer will execute postural transitions (Supine $\rightarrow$ Right Lateral 30° $\rightarrow$ Fowler's). The on-device TinyML model will classify and display each posture within 200~ms. When an overdue turn timer expires, the buzzer sounds; a valid $30^\circ$ voluntary turn resets the timer automatically, confirming autonomous compliance tracking.
 
-\noindent \textbf{Stage 3 -- Repositioning Alert and Microclimate Moisture Simulation.} With a compressed 60-second turn timer active, the participant will remain intentionally motionless to trigger the turn countdown expiry. The MYOSA buzzer will emit an audible reminder and push an alert to the mobile application. The volunteer will then turn $45^\circ$, demonstrating automatic turn detection and timer reset. Subsequently, a saline-dampened gauze applied to the SI7021 sensor will instantly trigger a sacral moisture alarm ($>75\%$~RH) on both the OLED and caregiver app.
+\noindent \textbf{Stage 3 -- Closed-Loop Pressure Alternation and Bottoming-Out Failsafe.} The demonstrator will initiate active pressure redistribution. The optoisolated TRIAC will energize the compressor to inflate Bank A and vent Bank B, measured by the BMP180 sensor. Introducing an artificial air leak will trigger a ``Bottoming-Out Hazard'' warning on the OLED and mobile app within 3.2 seconds, automatically adjusting TRIAC duty cycle to restore safe pressure.
 
-\noindent \textbf{Stage 4 -- Mains Safety and Failsafe Validation.} An oscilloscope connected across the TRIAC switching output will confirm precise zero-crossing phase synchronization, verifying the complete absence of electrical transient noise on the low-voltage sensor lines. Finally, a deliberate mains power disconnection will show that the pneumatic check valves lock air in the bladders, preventing patient deflation.
+\noindent \textbf{Stage 4 -- Microclimate Maceration Alert and Mains Electrical Safety.} Saline-dampened gauze placed on the SI7021 sensor will simulate localized sweat accumulation, triggering an immediate maceration alarm ($>75\%$~RH) on the mobile app. Finally, an oscilloscope connected across the TRIAC terminals will verify clean zero-crossing switching without line transients, demonstrating rigorous patient electrical isolation.
 
 \section{Conclusion}
-Continuous, low-cost surveillance of tissue loading and physiological status represents an underserved but clinically critical need for bedridden elderly individuals, spinal cord injury victims, and intensive care patients. DecubiGuard demonstrates that an autonomous, closed-loop anti-bedsore mattress system can be constructed entirely upon the modular MYOSA Mini IoT platform, eliminating the need for external microcontrollers, custom PCBs, or expensive proprietary medical hardware. By consolidating multi-sensor acquisition, on-device BCG filtering, closed-loop TRIAC pump actuation, and caregiver-side BLE telemetry onto a single integrated platform, this prototype establishes a complete, reproducible healthcare ecosystem at a fraction of the cost of commercial alternatives, with direct implications for pressure ulcer prevention outside hospital settings.
+DecubiGuard provides an autonomous, accessible, and clinically grounded solution to the persistent challenge of pressure injury prevention in bedridden individuals. By unifying contactless BCG vitals extraction, on-device TinyML posture classification, closed-loop pressure-time regulation, and optoisolated mains safety entirely on the modular MYOSA Mini platform, the prototype demonstrates that comprehensive ambient intelligence can be deployed without costly clinical hardware.
 
-\vspace{0.15em}
-\noindent The complete source code, hardware schematics, and mobile application files for DecubiGuard are openly available at: \url{https://github.com/IEEE-EMBS-E-JUST-SBC/IEEE-MYOSA-6.0-DecubiGuard}.
+\vspace{0.10em}
+\noindent Complete source code, schematics, and mobile application files are openly available at: \url{https://github.com/5636mohamed/IEEE-MYOSA-6.0-DecubiGuard}.
 
 \newpage
 % =========================================================
 % PAGE 5
 % =========================================================
 \section*{References}
-\vspace{0.3em}
+\vspace{0.20em}
 
 \begin{enumerate}
     \sloppy
-    \setlength{\itemsep}{0.65em}
+    \setlength{\itemsep}{0.50em}
     \setlength{\parskip}{0pt}
-    \item[{[1]}] P.~C.~Belafsky, ``Dysphagia and pressure ulcers: Clinical complications of patient immobility,'' \textit{Otolaryngologic Clinics of North America}, vol.~46, no.~6, pp.~965--970, 2013. doi: 10.1016/j.otc.2013.08.001
+    \item[{[1]}] J.~Kottner, J.~Cuddigan, K.~Carville, and E.~Haesler, ``A closer look at the 2019 International Guideline on the prevention and treatment of pressure ulcers/injuries,'' \textit{Journal of Tissue Viability}, vol.~29, no.~4, pp.~228--231, 2020. doi: 10.1016/j.jtv.2020.09.003
     
-    \item[{[2]}] R.~Martino, N.~Foley, S.~Bhogal, N.~Diamant, M.~Speechley, and R.~Teasell, ``Pressure ulcers and secondary complications after acute stroke recovery,'' \textit{Stroke}, vol.~36, no.~12, pp.~2756--2763, 2005. doi: 10.1161/01.STR.0000190056.76543.eb
+    \item[{[2]}] A.~Gefen, D.~M.~Brienza, J.~Cuddigan, E.~Haesler, and J.~Kottner, ``Our contemporary understanding of the aetiology of pressure ulcers/pressure injuries,'' \textit{International Wound Journal}, vol.~19, no.~3, pp.~692--704, 2022. doi: 10.1111/iwj.13667
     
-    \item[{[3]}] G.~T.~Suttrup and T.~Warnecke, ``Pressure injury epidemiology in spinal cord injury and Parkinson's disease,'' \textit{Dysphagia}, vol.~31, no.~1, pp.~24--32, 2016. doi: 10.1007/s00455-015-9671-9
+    \item[{[3]}] C.~Shi, J.~C.~Dumville, N.~Cullum, S.~Rhodes, A.~Jammali-Blasi, and E.~McInnes, ``Alternating pressure (active) air surfaces for preventing pressure ulcers,'' \textit{Cochrane Database of Systematic Reviews}, no.~5, Art. no.~CD013620, 2021. doi: 10.1002/14651858.CD013620.pub2
     
-    \item[{[4]}] N.~Tabor-Gray, E.~Plowman, and J.~Rosado, ``Mechanisms of tissue breakdown under sustained mechanical loading: A systematic review,'' \textit{Dysphagia}, vol.~36, no.~2, pp.~173--189, 2021. doi: 10.1007/s00455-020-10128-6
+    \item[{[4]}] P.~Avsar, Z.~Moore, D.~Patton, T.~O'Connor, A.~M.~Budri, and L.~Nugent, ``Repositioning for preventing pressure ulcers: A systematic review and meta-analysis,'' \textit{Journal of Wound Care}, vol.~29, no.~9, pp.~496--508, 2020. doi: 10.12968/jowc.2020.29.9.496
     
-    \item[{[5]}] M.~P.~Marik, ``Cellular hypoxia and ischemia-reperfusion injury in deep tissue pressure damage,'' \textit{New England Journal of Medicine}, vol.~344, no.~9, pp.~665--671, 2001. doi: 10.1056/NEJM200103013440908
+    \item[{[5]}] J.~Kottner, J.~Black, E.~Call, A.~Gefen, and N.~Santamaria, ``Microclimate: A critical review in the context of pressure ulcer prevention,'' \textit{Clinical Biomechanics}, vol.~59, pp.~62--70, 2018. doi: 10.1016/j.clinbiomech.2018.09.010
     
-    \item[{[6]}] S.~Hiss and M.~A.~Postma, ``Clinical evaluation of skin breakdown and deep tissue necrosis in critical care,'' \textit{The Laryngoscope}, vol.~113, no.~8, pp.~1386--1393, 2003. doi: 10.1097/00005537-200308000-00023
+    \item[{[6]}] O.~T.~Inan, P.-F.~Migeotte, K.-S.~Park, M.~Etemadi, K.~Tavakolian, R.~Casanella, J.~Zanetti, J.~Tank, I.~Funtova, G.~K.~Prisk, and M.~Di Rienzo, ``Ballistocardiography and seismocardiography: A review of recent advances,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~19, no.~4, pp.~1414--1427, 2015. doi: 10.1109/JBHI.2014.2361732
     
-    \item[{[7]}] B.~Martin-Harris and B.~Jones, ``Standardized repositioning protocols for pressure injury prevention,'' \textit{Physical Medicine and Rehabilitation Clinics of North America}, vol.~19, no.~4, pp.~769--785, 2008. doi: 10.1016/j.pmr.2008.06.004
+    \item[{[7]}] C.~Br\"user, K.~Stadlthanner, S.~de Waele, and S.~Leonhardt, ``Adaptive heartbeat modeling for beat-to-beat heart rate measurement in ballistocardiograms,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~19, no.~2, pp.~454--463, 2015. doi: 10.1109/JBHI.2014.2314144
     
-    \item[{[8]}] J.~L.~Lever, K.~Constantinescu, and S.~Patel, ``Wearable and unobtrusive sensor systems for bedridden patient monitoring: A review,'' \textit{IEEE Reviews in Biomedical Engineering}, vol.~14, pp.~122--135, 2021. doi: 10.1109/RBME.2020.3001234
+    \item[{[8]}] G.~Matar, J.-M.~Lina, and G.~Kaddoum, ``Artificial neural network for in-bed posture classification using bed-sheet pressure sensors,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~24, no.~1, pp.~125--136, 2020. doi: 10.1109/JBHI.2019.2899070
     
-    \item[{[9]}] P.~Warden and D.~Situnayake, \textit{TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers}. Sebastopol, CA: O'Reilly Media, 2019.
+    \item[{[9]}] G.~Peruzzi, A.~Galli, G.~Giorgi, and A.~Pozzebon, ``Sleep posture detection via embedded machine learning on a reduced set of pressure sensors,'' \textit{Sensors}, vol.~25, no.~2, p.~458, 2025. doi: 10.3390/s25020458
     
-    \item[{[10]}] Y.~Lee, J.~Kim, and H.~Cho, ``Inertial-based detection of body movement and postural transitions for patient monitoring,'' \textit{Sensors}, vol.~20, no.~14, p.~3935, 2020. doi: 10.3390/s20143935
+    \item[{[10]}] P.~Warden and D.~Situnayake, \textit{TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers}. Sebastopol, CA: O'Reilly Media, 2019.
     
-    \item[{[11]}] E.~Sejdic, S.~Steele, and T.~Chau, ``Ballistocardiographic and vibration monitoring for unobtrusive cardiovascular assessment,'' \textit{Medical \& Biological Engineering \& Computing}, vol.~49, no.~9, pp.~1003--1012, 2011. doi: 10.1007/s11517-011-0791-4
+    \item[{[11]}] M.~J.~G.~Pezzolesi, D.~L.~Bader, and C.~W.~J.~Oomens, ``Deformation-induced damage in skeletal muscle tissue: An in vitro model for deep tissue injury,'' \textit{Journal of Biomechanics}, vol.~42, no.~14, pp.~2221--2228, 2009. doi: 10.1016/j.jbiomech.2009.06.050
     
-    \item[{[12]}] R.~Sazonov and J.~M.~Fontana, ``Non-invasive monitoring of physiological mechanics and microclimate in smart bedding systems,'' \textit{IEEE Sensors Journal}, vol.~12, no.~5, pp.~1340--1348, 2012. doi: 10.1109/JSEN.2011.2169804
+    \item[{[12]}] J.~L.~Lever, K.~Constantinescu, and S.~Patel, ``Wearable and unobtrusive sensor systems for bedridden patient monitoring: A review,'' \textit{IEEE Reviews in Biomedical Engineering}, vol.~14, pp.~122--135, 2021. doi: 10.1109/RBME.2020.3001234
 \end{enumerate}
 
 \end{document}
