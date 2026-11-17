@@ -1,0 +1,6 @@
+# DecubiGuard Project Dependencies
+numpy>=1.22.0
+scipy>=1.9.0
+matplotlib>=3.5.0
+pyserial>=3.5
+pytest>=7.0.0
