@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "project": "DecubiGuard",
+  "description": "Label schema for the 5-class in-bed sleep posture and repositioning classification model trained in Edge Impulse Studio.",
+  "classes": [
+    {
+      "id": 0,
+      "label": "supine",
+      "edge_impulse_label": "supine",
+      "description": "Patient lying horizontally on their back. Maximum compressive loading concentrated over sacrum, coccyx, and heels.",
+      "imu_characteristics": {
+        "accel_x_range_g": [-0.15, 0.15],
+        "accel_y_range_g": [-0.15, 0.15],
+        "accel_z_range_g": [0.85, 1.05],
+        "roll_angle_deg": [-10, 10],
+        "pitch_angle_deg": [-10, 10]
+      },
+      "clinical_risk": "High sacral and heel ischemia risk. PTI integration threshold: 90 minutes."
+    },
+    {
+      "id": 1,
+      "label": "right_lateral_30",
+      "edge_impulse_label": "right_lateral_30",
+      "description": "Recommended 30-degree tilt onto the right side using therapeutic wedge support. Offloads sacrum and right greater trochanter.",
+      "imu_characteristics": {
+        "accel_x_range_g": [0.40, 0.60],
+        "accel_y_range_g": [-0.20, 0.20],
+        "accel_z_range_g": [0.70, 0.90],
+        "roll_angle_deg": [25, 35],
+        "pitch_angle_deg": [-10, 10]
+      },
+      "clinical_risk": "Optimal therapeutic posture. Reperfusion of sacral capillary bed."
+    },
+    {
+      "id": 2,
+      "label": "left_lateral_30",
+      "edge_impulse_label": "left_lateral_30",
+      "description": "Recommended 30-degree tilt onto the left side using therapeutic wedge support. Offloads sacrum and left greater trochanter.",
+      "imu_characteristics": {
+        "accel_x_range_g": [-0.60, -0.40],
+        "accel_y_range_g": [-0.20, 0.20],
+        "accel_z_range_g": [0.70, 0.90],
+        "roll_angle_deg": [-35, -25],
+        "pitch_angle_deg": [-10, 10]
+      },
+      "clinical_risk": "Optimal therapeutic posture. Reperfusion of sacral capillary bed."
+    },
+    {
+      "id": 3,
+      "label": "fowler",
+      "edge_impulse_label": "fowler",
+      "description": "Semi-Fowler or High-Fowler position with head-of-bed elevated between 30 and 45 degrees. Generates severe shear stress at the sacral-fascial junction.",
+      "imu_characteristics": {
+        "accel_x_range_g": [-0.20, 0.20],
+        "accel_y_range_g": [0.45, 0.75],
+        "accel_z_range_g": [0.65, 0.85],
+        "roll_angle_deg": [-15, 15],
+        "pitch_angle_deg": [25, 50]
+      },
+      "clinical_risk": "Severe shear and microvascular occlusion. Maximum recommended duration: 60 minutes."
+    },
+    {
+      "id": 4,
+      "label": "prone",
+      "edge_impulse_label": "prone",
+      "description": "Patient lying face down. Offloads the entire dorsal skeletal axis. Loading concentrated at patella, iliac crests, and chest.",
+      "imu_characteristics": {
+        "accel_x_range_g": [-0.20, 0.20],
+        "accel_y_range_g": [-0.20, 0.20],
+        "accel_z_range_g": [-1.05, -0.80],
+        "roll_angle_deg": [165, -165],
+        "pitch_angle_deg": [-15, 15]
+      },
+      "clinical_risk": "Dorsal ulcer relief; monitoring required for airway patency."
+    }
+  ],
+  "sampling_parameters": {
+    "frequency_hz": 100,
+    "window_size_ms": 2000,
+    "window_hop_ms": 1000,
+    "input_channels": ["accel_x", "accel_y", "accel_z", "gyro_x", "gyro_y", "gyro_z"]
+  }
+}

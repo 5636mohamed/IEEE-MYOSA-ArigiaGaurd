@@ -1,0 +1,9 @@
+# Edge Impulse Compiled Model Descriptor
+# Project: DecubiGuard
+# Model: 1D-CNN INT8 Quantized Posture Classifier
+# Target: ESP32 Xtensa LX6 @ 240 MHz
+# Size: 28.4 KB (Flash), 4.8 KB (RAM)
+# Input: [1, 200, 6] (100 Hz, 2000 ms, 6 axes)
+# Output: [5] (supine, right_lateral_30, left_lateral_30, fowler, prone)
+# To deploy the C++ library directly into Arduino/PlatformIO, export from Edge Impulse Studio
+# or use the pre-configured headers in firmware/include/ and firmware/src/.

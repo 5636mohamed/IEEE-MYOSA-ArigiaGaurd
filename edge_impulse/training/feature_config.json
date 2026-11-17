@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "dsp_blocks": [
+    {
+      "id": 1,
+      "name": "Spectral Analysis",
+      "type": "spectral_analysis",
+      "axes": [
+        "accel_x",
+        "accel_y",
+        "accel_z",
+        "gyro_x",
+        "gyro_y",
+        "gyro_z"
+      ],
+      "parameters": {
+        "scale_axes": 1.0,
+        "filter_type": "lowpass",
+        "filter_cutoff": 20.0,
+        "filter_order": 4,
+        "analysis_type": "FFT",
+        "fft_length": 128,
+        "spectral_power_edges": [
+          0.1,
+          0.5,
+          1.5,
+          5.0,
+          15.0
+        ],
+        "features": {
+          "rms": true,
+          "peaks": true,
+          "spectral_power": true,
+          "skewness": true,
+          "kurtosis": true
+        }
+      }
+    }
+  ],
+  "learn_blocks": [
+    {
+      "id": 2,
+      "name": "1D-CNN Posture Classifier",
+      "type": "keras",
+      "parameters": {
+        "architecture": "1D-CNN",
+        "conv_filters": [32, 64],
+        "kernel_size": 3,
+        "dense_units": [32],
+        "dropout": 0.25,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "epochs": 50,
+        "quantization": "int8"
+      }
+    }
+  ],
+  "sampling": {
+    "frequency_hz": 100,
+    "window_size_ms": 2000,
+    "window_step_ms": 1000
+  }
+}

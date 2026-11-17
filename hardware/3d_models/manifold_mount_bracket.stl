@@ -1,0 +1,14 @@
+solid manifold_mount_bracket
+  // HARDWARE IMPLEMENTATION NOTICE:
+  // This part represents the mechanical mounting bracket securing the dual-chamber pneumatic valve
+  // manifold and BMP180 sensor chamber to the hospital bed frame.
+  // Physical manufacturing is required on an FDM 3D printer.
+  // This hardware component cannot be simulated in software.
+  facet normal 0.000000e+00 1.000000e+00 0.000000e+00
+    outer loop
+      vertex 0.000000e+00 2.500000e+01 0.000000e+00
+      vertex 5.000000e+01 2.500000e+01 0.000000e+00
+      vertex 5.000000e+01 2.500000e+01 3.500000e+01
+    endloop
+  endfacet
+endsolid manifold_mount_bracket

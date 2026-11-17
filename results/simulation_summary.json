@@ -1,0 +1,49 @@
+{
+  "project": "DecubiGuard",
+  "competition": "IEEE MYOSA 6.0",
+  "authors": [
+    "Abdelrahman Hamza",
+    "Abdelrahman Wael",
+    "Mohamed Elhariry"
+  ],
+  "system_status": "VALIDATED_SIMULATION_READY",
+  "tinyml_model": {
+    "model_type": "1D-CNN (INT8 Quantized)",
+    "classes": [
+      "supine",
+      "right_lateral_30",
+      "left_lateral_30",
+      "fowler",
+      "prone"
+    ],
+    "overall_accuracy_pct": 100.0,
+    "macro_f1_score": 1.0,
+    "inference_latency_ms": 12.3,
+    "ram_usage_kb": 4.8,
+    "flash_usage_kb": 28.4
+  },
+  "contactless_vitals": {
+    "ground_truth_hr_bpm": 72.0,
+    "estimated_hr_bpm": 72.0,
+    "hr_error_bpm": 0.0,
+    "ground_truth_rr_brpm": 15.0,
+    "estimated_rr_brpm": 14.99,
+    "rr_error_brpm": 0.01,
+    "rmssd_ms": 14.22,
+    "is_deep_sleep": false
+  },
+  "closed_loop_telemetry": {
+    "duration_simulated_seconds": 180,
+    "alternation_cycles_triggered": 1,
+    "maceration_alerts_raised": 41,
+    "peak_pti_observed": 177.36
+  },
+  "artifacts_generated": [
+    "results/simulation_summary.json",
+    "results/confusion_matrix.json",
+    "results/posture_confusion_matrix.png",
+    "results/simulated_telemetry.csv",
+    "docs/flowchart.png",
+    "hardware/schematics/decubiguard_schematic.png"
+  ]
+}

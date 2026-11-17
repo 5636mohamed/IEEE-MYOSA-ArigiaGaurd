@@ -1,0 +1,20 @@
+solid sensor_pod_enclosure_bottom
+  // HARDWARE IMPLEMENTATION NOTICE:
+  // This part represents the physical 3D base plate enclosure with vibration dampening grommet mounts.
+  // Physical manufacturing is required on an FDM/SLA 3D printer (Biocompatible PETG/ABS).
+  // This hardware component cannot be simulated in software.
+  facet normal 0.000000e+00 0.000000e+00 -1.000000e+00
+    outer loop
+      vertex 0.000000e+00 0.000000e+00 0.000000e+00
+      vertex 6.500000e+01 4.500000e+01 0.000000e+00
+      vertex 6.500000e+01 0.000000e+00 0.000000e+00
+    endloop
+  endfacet
+  facet normal 0.000000e+00 0.000000e+00 -1.000000e+00
+    outer loop
+      vertex 0.000000e+00 0.000000e+00 0.000000e+00
+      vertex 0.000000e+00 4.500000e+01 0.000000e+00
+      vertex 6.500000e+01 4.500000e+01 0.000000e+00
+    endloop
+  endfacet
+endsolid sensor_pod_enclosure_bottom

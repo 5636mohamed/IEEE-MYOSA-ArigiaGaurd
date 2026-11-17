@@ -1,0 +1,89 @@
+{
+  "labels": [
+    "supine",
+    "right_lateral_30",
+    "left_lateral_30",
+    "fowler",
+    "prone"
+  ],
+  "matrix": [
+    [
+      200,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      200,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      200,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      200,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      200
+    ]
+  ],
+  "overall_accuracy_pct": 100.0,
+  "per_class_metrics": {
+    "supine": {
+      "true_positives": 200,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "right_lateral_30": {
+      "true_positives": 200,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "left_lateral_30": {
+      "true_positives": 200,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "fowler": {
+      "true_positives": 200,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "prone": {
+      "true_positives": 200,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    }
+  }
+}

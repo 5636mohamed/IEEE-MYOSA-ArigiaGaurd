@@ -1,0 +1,82 @@
+{
+  "model_name": "DecubiGuard-Posture-1DCNN-INT8",
+  "project_name": "DecubiGuard",
+  "framework": "Edge Impulse Studio / TensorFlow Lite for Microcontrollers",
+  "quantization": "int8",
+  "input": {
+    "shape": [1, 200, 6],
+    "sampling_frequency_hz": 100,
+    "window_length_ms": 2000,
+    "channels": [
+      "accel_x",
+      "accel_y",
+      "accel_z",
+      "gyro_x",
+      "gyro_y",
+      "gyro_z"
+    ]
+  },
+  "classes": [
+    "supine",
+    "right_lateral_30",
+    "left_lateral_30",
+    "fowler",
+    "prone"
+  ],
+  "benchmark_metrics": {
+    "overall_accuracy_pct": 94.6,
+    "macro_f1_score": 0.943,
+    "inference_latency_ms": 12.3,
+    "ram_peak_usage_kb": 4.8,
+    "flash_usage_kb": 28.4,
+    "tested_target": "ESP32 (MYOSA Motherboard, 240 MHz)"
+  },
+  "per_class_metrics": {
+    "supine": {
+      "precision": 0.954,
+      "recall": 0.961,
+      "f1_score": 0.957,
+      "samples_tested": 720
+    },
+    "right_lateral_30": {
+      "precision": 0.941,
+      "recall": 0.938,
+      "f1_score": 0.939,
+      "samples_tested": 576
+    },
+    "left_lateral_30": {
+      "precision": 0.948,
+      "recall": 0.942,
+      "f1_score": 0.945,
+      "samples_tested": 576
+    },
+    "fowler": {
+      "precision": 0.935,
+      "recall": 0.944,
+      "f1_score": 0.939,
+      "samples_tested": 576
+    },
+    "prone": {
+      "precision": 0.962,
+      "recall": 0.948,
+      "f1_score": 0.955,
+      "samples_tested": 432
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "supine",
+      "right_lateral_30",
+      "left_lateral_30",
+      "fowler",
+      "prone"
+    ],
+    "matrix": [
+      [692, 8, 7, 11, 2],
+      [11, 540, 6, 15, 4],
+      [9, 7, 543, 14, 3],
+      [10, 14, 8, 544, 0],
+      [3, 5, 9, 5, 410]
+    ]
+  }
+}
