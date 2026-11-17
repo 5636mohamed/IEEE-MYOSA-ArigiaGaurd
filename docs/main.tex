@@ -132,56 +132,61 @@ The end-to-end DecubiGuard architecture coordinates five sequential layers, from
 \vspace{0.25em}
 \begin{center}
 \begin{tikzpicture}[
-    scale=0.86, every node/.style={transform shape},
-    box/.style={rectangle, draw=boxborder, line width=0.8pt, rounded corners=3pt, minimum height=1.35cm, text width=2.65cm, align=center, font=\scriptsize},
-    arrow/.style={-{Stealth[scale=0.85]}, line width=1.0pt, draw=boxdarkblue}
+    scale=0.90, every node/.style={transform shape},
+    box/.style={rectangle, draw=boxborder, line width=0.8pt, rounded corners=4pt, minimum height=1.75cm, text width=2.85cm, align=center, font=\scriptsize},
+    arrow/.style={-{Stealth[scale=0.85]}, line width=1.1pt, draw=boxdarkblue}
 ]
 
-% 5 Blocks in a neat horizontal pipeline
+% 5 Blocks in a clean horizontal pipeline without text wrapping issues
 \node[box, fill=boxblue] (B1) {
-    \textbf{1. Multi-Modal Sensing}\\[0.25em]
-    MPU6050 (BCG \& Motion)\\
-    BMP180 (Cell Pressure)\\
-    SI7021 (Sacral Microclimate)
+    \textbf{1. Multi-Modal}\\[-0.1em]
+    \textbf{Sensing Layer}\\[0.25em]
+    MPU6050: BCG / Motion\\
+    BMP180: Cell Pressure\\
+    SI7021: Microclimate
 };
 
 \node[box, fill=boxgreen, right=0.35cm of B1] (B2) {
-    \textbf{2. Preprocessing \& BCG}\\[0.25em]
-    Dual Butterworth Filter\\
-    Resp: 0.1--0.5 Hz (BrPM)\\
-    BCG: 0.8--3.5 Hz ($J$-Waves)
+    \textbf{2. Preprocessing}\\[-0.1em]
+    \textbf{\& BCG Vitals}\\[0.25em]
+    Dual Butterworth IIR\\
+    Resp: 0.1--0.5 Hz\\
+    Cardiac: 0.8--3.5 Hz
 };
 
 \node[box, fill=boxpurple, right=0.35cm of B2] (B3) {
-    \textbf{3. TinyML Inference}\\[0.25em]
-    1D-CNN Posture Model\\
-    5 Sleep Postures ($>94\%$)\\
+    \textbf{3. TinyML}\\[-0.1em]
+    \textbf{Classifier}\\[0.25em]
+    INT8 1D-CNN Model\\
+    5 In-Bed Postures\\
     $J$-$J$ HRV \& Sleep State
 };
 
 \node[box, fill=boxorange, right=0.35cm of B3] (B4) {
-    \textbf{4. Closed-Loop Engine}\\[0.25em]
+    \textbf{4. Closed-Loop}\\[-0.1em]
+    \textbf{PTI Engine}\\[0.25em]
     Dynamic PTI Accumulator\\
     Bottoming-Out Safety\\
-    Maceration Index ($>75\%$)
+    Maceration Alert ($>65\%$)
 };
 
 \node[box, fill=boxblue, right=0.35cm of B4] (B5) {
-    \textbf{5. Actuation \& Output}\\[0.25em]
+    \textbf{5. Actuation}\\[-0.1em]
+    \textbf{\& Telemetry}\\[0.25em]
     Zero-Crossing TRIAC\\
-    OLED Bedside Display\\
-    Buzzer \& BLE Telemetry
+    Bedside OLED Display\\
+    Buzzer \& BLE GATT
 };
 
 % Connectors
-\draw[arrow] (B1) -- (B2);
-\draw[arrow] (B2) -- (B3);
-\draw[arrow] (B3) -- (B4);
-\draw[arrow] (B4) -- (B5);
+\draw[arrow] (B1.east) -- (B2.west);
+\draw[arrow] (B2.east) -- (B3.west);
+\draw[arrow] (B3.east) -- (B4.west);
+\draw[arrow] (B4.east) -- (B5.west);
 
 \end{tikzpicture}
 \end{center}
-\vspace{-0.65em}
+\vspace{0.10em}
 
 \noindent \textbf{Figure 1: DecubiGuard Edge-AI Signal Processing and Closed-Loop Control Architecture.} Raw sensor streams are filtered on-device, evaluated by the TinyML posture classifier and BCG vital sign extractor, and synthesized by the dynamic PTI engine to drive optoisolated pneumatic actuation and caregiver alerts.
 
@@ -189,61 +194,61 @@ The end-to-end DecubiGuard architecture coordinates five sequential layers, from
 % =========================================================
 % PAGE 4
 % =========================================================
-\vspace{-0.35em}
+\vspace{-0.3em}
 \begin{center}
 \begin{tikzpicture}[
-    scale=0.76, every node/.style={transform shape},
-    mcu/.style={rectangle, draw=boxdarkblue, fill=boxblue, line width=1.1pt, rounded corners=4pt, minimum height=1.5cm, text width=3.4cm, align=center, font=\bfseries\small},
-    sensor/.style={rectangle, draw=boxdarkgreen, fill=boxgreen, line width=0.8pt, rounded corners=3pt, minimum height=1.05cm, text width=2.85cm, align=center, font=\scriptsize},
-    actuator/.style={rectangle, draw=boxdarkorange, fill=boxorange, line width=0.8pt, rounded corners=3pt, minimum height=1.05cm, text width=2.85cm, align=center, font=\scriptsize},
-    comm/.style={rectangle, draw=boxdarkpurple, fill=boxpurple, line width=0.8pt, rounded corners=3pt, minimum height=0.75cm, text width=3.0cm, align=center, font=\scriptsize},
-    app/.style={rectangle, draw=blue!75, fill=blue!10, line width=1.0pt, rounded corners=3pt, minimum height=0.75cm, text width=3.2cm, align=center, font=\bfseries\scriptsize},
-    pwr/.style={rectangle, draw=gray!80, fill=boxgray, line width=0.8pt, rounded corners=3pt, minimum height=0.70cm, text width=3.4cm, align=center, font=\scriptsize},
-    wire/.style={line width=0.8pt, draw=gray!75},
-    i2c/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, line width=0.9pt, draw=boxdarkgreen},
-    sig/.style={-{Stealth[scale=0.85]}, line width=0.9pt, draw=boxdarkorange},
+    scale=0.74, every node/.style={transform shape},
+    mcu/.style={rectangle, draw=boxdarkblue, fill=boxblue, line width=1.1pt, rounded corners=6pt, minimum height=1.70cm, text width=3.8cm, align=center, font=\small},
+    sensor/.style={rectangle, draw=boxdarkgreen, fill=boxgreen, line width=0.9pt, rounded corners=4pt, minimum height=1.30cm, text width=3.0cm, align=center, font=\scriptsize},
+    actuator/.style={rectangle, draw=boxdarkorange, fill=boxorange, line width=0.9pt, rounded corners=4pt, minimum height=1.30cm, text width=3.0cm, align=center, font=\scriptsize},
+    comm/.style={rectangle, draw=boxdarkpurple, fill=boxpurple, line width=0.9pt, rounded corners=4pt, minimum height=0.85cm, text width=3.4cm, align=center, font=\scriptsize},
+    app/.style={rectangle, draw=blue!75, fill=blue!10, line width=1.1pt, rounded corners=4pt, minimum height=0.85cm, text width=3.6cm, align=center, font=\scriptsize},
+    pwr/.style={rectangle, draw=gray!80, fill=boxgray, line width=0.9pt, rounded corners=4pt, minimum height=0.80cm, text width=3.8cm, align=center, font=\scriptsize},
+    wire/.style={line width=0.9pt, draw=gray!75},
+    i2c/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, line width=1.0pt, draw=boxdarkgreen},
+    sig/.style={-{Stealth[scale=0.85]}, line width=1.0pt, draw=boxdarkorange},
     ble/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, dashed, line width=1.1pt, draw=blue!80}
 ]
 
 % Center MCU
-\node[mcu] (core) {MYOSA Motherboard\\{\footnotesize (ESP32 Edge Core)}\\{\tiny Multi-Sensor I2C $\cdot$ TinyML $\cdot$ PTI Logic}};
+\node[mcu] (core) {\textbf{MYOSA Motherboard}\\[0.15em]{\footnotesize (ESP32 Edge Core)}\\[0.20em]{\scriptsize Multi-Sensor I2C $\cdot$ TinyML $\cdot$ PTI}};
 
-% Left: Sensors
-\node[sensor, left=1.8cm of core, yshift=0.95cm] (imu) {\textbf{MYOSA IMU Board}\\{MPU6050: 6-Axis IMU}\\{\tiny BCG Recoil \& Posture Kinematics}};
-\node[sensor, left=1.8cm of core, yshift=-0.95cm] (env) {\textbf{Pressure \& Moisture}\\{BMP180 (Cell Pressure)}\\{SI7021 (Sacral RH \& Temp)}};
+% Left: Sensors (increased separation to prevent arrow label overlap)
+\node[sensor, left=2.4cm of core, yshift=1.15cm] (imu) {\textbf{MYOSA IMU Board}\\[0.18em]MPU6050 6-Axis Motion\\[0.10em]{\tiny BCG Recoil \& Posture Tilt}};
+\node[sensor, left=2.4cm of core, yshift=-1.15cm] (env) {\textbf{Pressure \& Climate}\\[0.18em]BMP180: Cell Manifold\\[0.10em]SI7021: Sacral RH \& Temp};
 
 % Right: Actuators and Bedside Output
-\node[actuator, right=1.8cm of core, yshift=0.95cm] (ui) {\textbf{Local User Interface}\\{0.96'' OLED Display}\\{Active Piezoelectric Buzzer}};
-\node[actuator, right=1.8cm of core, yshift=-0.95cm] (triac) {\textbf{Optoisolated TRIAC}\\{MOC3041 Zero-Crossing Driver}\\{220V/110V AC Air Compressor}};
+\node[actuator, right=2.4cm of core, yshift=1.15cm] (ui) {\textbf{Local User Interface}\\[0.18em]0.96'' SSD1306 OLED Display\\[0.10em]Active Piezo Buzzer Alarm};
+\node[actuator, right=2.4cm of core, yshift=-1.15cm] (triac) {\textbf{Optoisolated TRIAC}\\[0.18em]MOC3041 Zero-Cross Driver\\[0.10em]220V/110V AC Compressor};
 
 % Top: Wireless Telemetry Module
-\node[comm, above=0.7cm of core] (radio) {\textbf{On-Board BLE 5.0 Radio}\\{\tiny 2.4 GHz Telemetry \& GATT Server}};
+\node[comm, above=0.80cm of core] (radio) {\textbf{On-Board BLE 5.0 Radio}\\[0.10em]{\tiny 2.4 GHz Telemetry \& GATT Server}};
 
-% Remote Caregiver Smartphone App (Outside enclosure, above)
-\node[app, above=1.0cm of radio] (phone) {Caregiver Mobile Dashboard\\{\tiny (Android / iOS BLE Client)}};
+% Remote Caregiver Smartphone App (Outside enclosure, clearly above)
+\node[app, above=1.35cm of radio] (phone) {\textbf{Caregiver Mobile Dashboard}\\[0.10em]{\tiny (Android / iOS BLE Client)}};
 
 % Bottom: Power Subsystem
-\node[pwr, below=0.75cm of core] (power) {\textbf{Power Management Subsystem}\\{\tiny Regulated 3.3V/5V DC Bus $\cdot$ AC Mains Input}};
+\node[pwr, below=0.80cm of core] (power) {\textbf{Power Management Subsystem}\\[0.10em]{\tiny Regulated 3.3V/5V DC Bus $\cdot$ AC Mains Input}};
 
-% Connections
-\draw[i2c] (imu.east) -- node[midway, above, sloped, font=\tiny, text=boxdarkgreen] {I2C (0x68)} (core.155);
-\draw[i2c] (env.east) -- node[midway, above, sloped, font=\tiny, text=boxdarkgreen] {I2C (0x77, 0x40)} (core.205);
+% Connections with white knock-out background on labels to prevent ANY line intersection
+\draw[i2c] (imu.east) -- node[midway, fill=white, inner sep=2.0pt, font=\tiny\bfseries, text=boxdarkgreen] {I2C (0x68)} (core.155);
+\draw[i2c] (env.east) -- node[midway, fill=white, inner sep=2.0pt, font=\tiny\bfseries, text=boxdarkgreen] {I2C (0x77, 0x40)} (core.205);
 
-\draw[sig] (core.25) -- node[midway, above, sloped, font=\tiny, text=boxdarkorange] {I2C / PWM} (ui.west);
-\draw[sig] (core.335) -- node[midway, below, sloped, font=\tiny, text=boxdarkorange] {Opto GPIO} (triac.west);
+\draw[sig] (core.25) -- node[midway, fill=white, inner sep=2.0pt, font=\tiny\bfseries, text=boxdarkorange] {I2C / PWM} (ui.west);
+\draw[sig] (core.335) -- node[midway, fill=white, inner sep=2.0pt, font=\tiny\bfseries, text=boxdarkorange] {Opto Gate} (triac.west);
 
 \draw[wire] (core.north) -- (radio.south);
-\draw[ble] (radio.north) -- node[midway, right=4pt, font=\tiny, text=blue!85] {Wireless BLE 5.0} (phone.south);
+\draw[ble] (radio.north) -- node[midway, fill=white, inner sep=2.5pt, font=\tiny\bfseries, text=blue!90] {Wireless BLE 5.0} (phone.south);
 
 \draw[wire] (power.north) -- (core.south);
 
 % Enclosure boundary around bedside hardware only
-\node[draw=gray!50, dashed, line width=0.8pt, rounded corners=6pt, fit=(imu) (env) (ui) (triac) (core) (radio) (power), inner sep=0.18cm] (enc) {};
-\node[below=0.04cm of enc.south, font=\scriptsize\bfseries, color=gray!70] {Bedside Controller Enclosure (MYOSA Modular Bedside Unit)};
+\node[draw=gray!50, dashed, line width=0.8pt, rounded corners=7pt, fit=(imu) (env) (ui) (triac) (core) (radio) (power), inner sep=0.25cm] (enc) {};
+\node[below=2pt of enc.south, font=\scriptsize\bfseries, color=gray!70] {Bedside Controller Enclosure (MYOSA Modular Bedside Unit)};
 
 \end{tikzpicture}
 \end{center}
-\vspace{-0.75em}
+\vspace{-0.35em}
 
 \noindent \textbf{Figure 2: MYOSA-Based DecubiGuard Modular Hardware System Architecture.} All modules within the dashed line are co-located in the bedside controller. The MYOSA motherboard communicates over I2C with sensors and local outputs, controls the optoisolated high-voltage compressor, and streams wireless telemetry to the caregiver app.
 
