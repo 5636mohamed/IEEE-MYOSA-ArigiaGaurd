@@ -2,7 +2,7 @@
 
 **A MYOSA-Based Smart Anti-Bedsore Mattress System with Contactless Vitals, TinyML Posture Classification, and Closed-Loop Pressure Redistribution**
 
-> IEEE MYOSA 6.0 Competition Entry  
+> IEEE MYOSA Competition Entry  
 > Department of Biomedical and Mechatronics Engineering  
 > Egypt Japan University of Science & Technology (E-JUST)  
 > Authors: **Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry**
@@ -108,4 +108,8 @@ The DecubiGuard processing pipeline proceeds across five sequential edge-computi
 - **Abdelrahman Wael**
 - **Mohamed Elhariry**
 
-*Department of Biomedical and Mechatronics Engineering, Egypt Japan University of Science and Technology (E-JUST)*
+*Department of Mechatronics and Robotics Engineering, Egypt Japan University of Science and Technology (E-JUST)*
+
+*Department of Biomedical and Bioinformatics Engineering, Egypt Japan University of Science and Technology (E-JUST)*
+
+*Department of Electronics and Communication Engineering, Egypt Japan University of Science and Technology (E-JUST)*
