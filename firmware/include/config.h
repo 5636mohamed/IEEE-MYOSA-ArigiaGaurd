@@ -1,7 +1,7 @@
 /**
  * @file config.h
  * @brief Global configuration constants, pinouts, and clinical thresholds for DecubiGuard.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  * @institution Egypt-Japan University of Science and Technology (E-JUST)
  */
 

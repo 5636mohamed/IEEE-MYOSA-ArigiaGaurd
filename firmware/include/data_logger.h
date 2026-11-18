@@ -1,7 +1,7 @@
 /**
  * @file data_logger.h
  * @brief Circular buffer telemetry and clinical audit logging for DecubiGuard.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #ifndef DATA_LOGGER_H

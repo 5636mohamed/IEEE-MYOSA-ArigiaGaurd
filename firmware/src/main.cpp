@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @brief Main firmware entry point for DecubiGuard on the MYOSA platform.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  * @institution Egypt-Japan University of Science and Technology (E-JUST)
  */
 
@@ -38,7 +38,7 @@ void setup() {
     Serial.println(F("\n======================================================="));
     Serial.println(F("   DecubiGuard: Smart Anti-Bedsore Mattress System     "));
     Serial.println(F("      IEEE MYOSA 6.0 Competition Entry - E-JUST       "));
-    Serial.println(F(" Authors: A. Hamza, A. Wael, M. Elhariry             "));
+    Serial.println(F(" Author: Mohamed Elhariry                         "));
     Serial.println(F("=======================================================\n"));
 
     // 1. Initialize Subsystems

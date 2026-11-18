@@ -5,7 +5,7 @@
 > IEEE MYOSA Competition Entry  
 > Department of Biomedical and Mechatronics Engineering  
 > Egypt Japan University of Science & Technology (E-JUST)  
-> Authors: **Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry**
+> Author: **Mohamed Elhariry**
 
 ---
 
@@ -102,10 +102,8 @@ The DecubiGuard processing pipeline proceeds across five sequential edge-computi
 
 ---
 
-## Authors & Acknowledgments
+## Author & Acknowledgments
 
-- **Abdelrahman Hamza**
-- **Abdelrahman Wael**
 - **Mohamed Elhariry**
 
 *Department of Mechatronics and Robotics Engineering, Egypt Japan University of Science and Technology (E-JUST)*

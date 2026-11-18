@@ -1,7 +1,7 @@
 /**
  * @file signal_processing.cpp
  * @brief Implementations of digital Butterworth filtering, J-wave peak detection, and PTI integration.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #include "signal_processing.h"

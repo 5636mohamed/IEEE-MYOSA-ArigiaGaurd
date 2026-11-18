@@ -1,7 +1,7 @@
 /**
  * @file tinyml_inference.cpp
  * @brief Implementation of Edge Impulse posture classification wrapper.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #include "tinyml_inference.h"

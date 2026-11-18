@@ -353,8 +353,6 @@ def main():
         "project": "DecubiGuard",
         "competition": "IEEE MYOSA 6.0",
         "authors": [
-            "Abdelrahman Hamza",
-            "Abdelrahman Wael",
             "Mohamed Elhariry"
         ],
         "system_status": "VALIDATED_SIMULATION_READY",

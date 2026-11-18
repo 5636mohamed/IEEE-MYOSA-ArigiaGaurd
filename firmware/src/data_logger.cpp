@@ -1,7 +1,7 @@
 /**
  * @file data_logger.cpp
  * @brief Implementations of circular buffer data logger for clinical audit compliance.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #include "data_logger.h"

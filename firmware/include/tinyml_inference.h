@@ -1,7 +1,7 @@
 /**
  * @file tinyml_inference.h
  * @brief Edge Impulse quantized 1D-CNN posture classifier wrapper for DecubiGuard.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #ifndef TINYML_INFERENCE_H

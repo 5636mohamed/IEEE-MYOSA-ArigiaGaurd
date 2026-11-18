@@ -1,7 +1,7 @@
 /**
  * @file sensor_acquisition.cpp
  * @brief Multi-modal sensor driver implementations for MPU6050, BMP180, and SI7021.
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #include "sensor_acquisition.h"

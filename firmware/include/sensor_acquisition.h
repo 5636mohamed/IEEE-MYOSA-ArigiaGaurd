@@ -1,7 +1,7 @@
 /**
  * @file sensor_acquisition.h
  * @brief Multi-modal sensor acquisition subsystem for DecubiGuard (MPU6050, BMP180, SI7021).
- * @author Abdelrahman Hamza, Abdelrahman Wael, Mohamed Elhariry
+ * @author Mohamed Elhariry
  */
 
 #ifndef SENSOR_ACQUISITION_H
