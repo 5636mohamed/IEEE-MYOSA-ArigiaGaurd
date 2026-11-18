@@ -1,4 +1,4 @@
-# DecubiGuard: Smart Anti-Bedsore Mattress System 🛏️
+# ArigiaGaurd: Smart Anti-Bedsore Mattress System 🛏️
 
 **A MYOSA-Based Smart Anti-Bedsore Mattress System with Contactless Vitals, TinyML Posture Classification, and Closed-Loop Pressure Redistribution**
 
