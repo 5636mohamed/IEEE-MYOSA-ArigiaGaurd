@@ -13,7 +13,7 @@
 
 Pressure ulcers (decubitus injuries) affect over **10% of hospitalized patients** and more than **50% of individuals with spinal cord injuries or prolonged immobility**. Standard alternating-pressure air mattresses (APAMs) operate strictly open-loop on uncalibrated mechanical timers without posture, tissue ischemia, or microclimate awareness.
 
-**DecubiGuard** is an autonomous smart mattress system built entirely on the **modular MYOSA Mini IoT platform**, requiring no external microcontrollers or custom PCBs. It integrates:
+**ArigiaGaurd** is an autonomous smart mattress system built entirely on the **modular MYOSA Mini IoT platform**, requiring no external microcontrollers or custom PCBs. It integrates:
 
 - 🧠 **On-Device TinyML Posture Classification**: Classifies 5 clinical sleep postures (*Supine, Right-Lateral 30°, Left-Lateral 30°, Prone, Fowler's*) directly on the ESP32 core via Edge Impulse (>94% accuracy).
 - 💓 **Contactless Vitals Monitoring**: Extracts real-time ballistocardiographic (BCG) $J$-waves and respiratory excursions via an under-mattress MPU6050 IMU, requiring zero adhesive skin electrodes.
@@ -26,7 +26,7 @@ Pressure ulcers (decubitus injuries) affect over **10% of hospitalized patients*
 
 ## System Architecture
 
-The DecubiGuard processing pipeline proceeds across five sequential edge-computing layers:
+The ArigiaGaurd processing pipeline proceeds across five sequential edge-computing layers:
 
 1. **Multi-Modal Sensing**: MPU6050 (BCG & kinematics), BMP180 (manifold pressure), SI7021 (sacral microclimate).
 2. **Preprocessing & Filtering**: Dual 4th-order digital Butterworth filters (0.1–0.5 Hz for respiration; 0.8–3.5 Hz for cardiac $J$-waves).
@@ -54,11 +54,11 @@ The DecubiGuard processing pipeline proceeds across five sequential edge-computi
 
 ```
 ├── docs/
-│   ├── DecubiGuard_Research_Paper.pdf    # Full 5-page IEEE EMBS MYOSA research paper
+│   ├── ArigiaGaurd_Research_Paper.pdf    # Full 5-page IEEE EMBS MYOSA research paper
 │   ├── main.tex                          # Complete calibrated LaTeX source code
 │   └── demo_guide.md                     # 4-stage conference live demonstration protocol
 ├── firmware/
-│   ├── DecubiGuard_Firmware.ino          # Arduino / PlatformIO embedded application
+│   ├── ArigiaGaurd_Firmware.ino          # Arduino / PlatformIO embedded application
 │   ├── include/
 │   │   └── config.h                      # Hardware pins, I2C addresses, and clinical thresholds
 │   └── src/

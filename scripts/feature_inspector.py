@@ -1,5 +1,5 @@
 """
-DecubiGuard - TinyML Feature Inspector & Distribution Visualizer
+ArigiaGaurd - TinyML Feature Inspector & Distribution Visualizer
 Extracts and compares time- and frequency-domain kinematic features across the 5 sleep postures.
 """
 
@@ -87,7 +87,7 @@ def inspect_dataset(output_file: str = "results/feature_distribution.png"):
     pitch_per_class = []
     az_per_class = []
 
-    print("\n=== DecubiGuard Feature Inspection Summary ===")
+    print("\n=== ArigiaGaurd Feature Inspection Summary ===")
     print(f"{'Class':<20} | {'Mean Roll (°)':<15} | {'Mean Pitch (°)':<15} | {'Mean Az (g)':<12}")
     print("-" * 70)
 
@@ -130,7 +130,7 @@ def inspect_dataset(output_file: str = "results/feature_distribution.png"):
     print(f"\n[SUCCESS] Feature distributions plotted to {output_file}\n")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="DecubiGuard Feature Inspector")
+    parser = argparse.ArgumentParser(description="ArigiaGaurd Feature Inspector")
     parser.add_argument("--output", type=str, default="results/feature_distribution.png", help="Path to save distribution plot")
     args = parser.parse_args()
 

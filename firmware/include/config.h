@@ -1,12 +1,12 @@
 /**
  * @file config.h
- * @brief Global configuration constants, pinouts, and clinical thresholds for DecubiGuard.
+ * @brief Global configuration constants, pinouts, and clinical thresholds for ArigiaGaurd.
  * @author Mohamed Elhariry
  * @institution Egypt-Japan University of Science and Technology (E-JUST)
  */
 
-#ifndef DECUBIGUARD_CONFIG_H
-#define DECUBIGUARD_CONFIG_H
+#ifndef ARIGIAGAURD_CONFIG_H
+#define ARIGIAGAURD_CONFIG_H
 
 #include <stdint.h>
 
@@ -78,11 +78,11 @@ enum PostureClass {
 // ==========================================
 // BLE Telemetry UUID Definitions
 // ==========================================
-#define BLE_DEVICE_NAME             "DecubiGuard"
+#define BLE_DEVICE_NAME             "ArigiaGaurd"
 #define BLE_SERVICE_UUID            "0000FE40-CC7A-482A-984A-7F2ED5B3E58F"
 #define BLE_CHAR_VITALS_UUID        "0000FE41-CC7A-482A-984A-7F2ED5B3E58F"
 #define BLE_CHAR_PRESSURE_UUID      "0000FE42-CC7A-482A-984A-7F2ED5B3E58F"
 #define BLE_CHAR_ALERTS_UUID        "0000FE43-CC7A-482A-984A-7F2ED5B3E58F"
 #define BLE_CHAR_CONTROL_UUID       "0000FE44-CC7A-482A-984A-7F2ED5B3E58F"
 
-#endif // DECUBIGUARD_CONFIG_H
+#endif // ARIGIAGAURD_CONFIG_H

@@ -1,5 +1,5 @@
 """
-DecubiGuard - Real-Time Serial Monitor & Telemetry Parser
+ArigiaGaurd - Real-Time Serial Monitor & Telemetry Parser
 Listens to MYOSA ESP32 UART output or runs interactive simulation if hardware is not connected.
 """
 
@@ -21,7 +21,7 @@ def run_hardware_monitor(port: str, baud: int):
     print(f"[INFO] Connecting to MYOSA device on {port} @ {baud} baud...")
     try:
         ser = serial.Serial(port, baud, timeout=1.0)
-        print(f"[SUCCESS] Connected! Streaming DecubiGuard telemetry:\n")
+        print(f"[SUCCESS] Connected! Streaming ArigiaGaurd telemetry:\n")
         while True:
             line = ser.readline().decode('utf-8', errors='replace').strip()
             if line:
@@ -86,7 +86,7 @@ def run_simulated_monitor():
         print("\n[INFO] Simulation monitor terminated.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="DecubiGuard Serial Monitor")
+    parser = argparse.ArgumentParser(description="ArigiaGaurd Serial Monitor")
     parser.add_argument("--port", type=str, default=None, help="Serial port (e.g., COM3, /dev/ttyUSB0)")
     parser.add_argument("--baud", type=int, default=115200, help="Baud rate (default: 115200)")
     args = parser.parse_args()

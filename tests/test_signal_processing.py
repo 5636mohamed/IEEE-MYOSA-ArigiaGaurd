@@ -1,5 +1,5 @@
 """
-Unit tests for DecubiGuard signal processing modules.
+Unit tests for ArigiaGaurd signal processing modules.
 Tests Butterworth IIR filtering, J-wave peak extraction, respiration estimation, and PTI ischemia accumulation.
 """
 

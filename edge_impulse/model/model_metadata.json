@@ -1,6 +1,6 @@
 {
-  "model_name": "DecubiGuard-Posture-1DCNN-INT8",
-  "project_name": "DecubiGuard",
+  "model_name": "ArigiaGaurd-Posture-1DCNN-INT8",
+  "project_name": "ArigiaGaurd",
   "framework": "Edge Impulse Studio / TensorFlow Lite for Microcontrollers",
   "quantization": "int8",
   "input": {

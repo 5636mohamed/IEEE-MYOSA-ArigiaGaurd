@@ -1,5 +1,5 @@
 """
-DecubiGuard - Contactless Ballistocardiography (BCG) Offline Signal Processing
+ArigiaGaurd - Contactless Ballistocardiography (BCG) Offline Signal Processing
 Separates respiration and micro-acceleration recoil vectors from MPU6050 data.
 """
 

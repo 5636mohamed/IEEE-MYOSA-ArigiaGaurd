@@ -1,5 +1,5 @@
 {
-  "project": "DecubiGuard",
+  "project": "ArigiaGaurd",
   "competition": "IEEE MYOSA 6.0",
   "authors": [
     "Mohamed Elhariry"
@@ -42,6 +42,6 @@
     "results/posture_confusion_matrix.png",
     "results/simulated_telemetry.csv",
     "docs/flowchart.png",
-    "hardware/schematics/decubiguard_schematic.png"
+    "hardware/schematics/arigiagaurd_schematic.png"
   ]
 }

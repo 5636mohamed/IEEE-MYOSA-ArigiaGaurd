@@ -1,5 +1,5 @@
 """
-DecubiGuard - End-to-End Simulation & Verification Harness
+ArigiaGaurd - End-to-End Simulation & Verification Harness
 Executes complete software simulation of multi-modal sensing, BCG vitals extraction,
 TinyML posture classification, closed-loop PTI pressure redistribution, and microclimate alerting.
 Generates all validation artifacts in results/ and docs/.
@@ -93,7 +93,7 @@ def plot_confusion_matrix(confusion: np.ndarray, output_path: str = "results/pos
     ax.set(xticks=np.arange(5), yticks=np.arange(5),
            xticklabels=["Supine", "R-30°", "L-30°", "Fowler", "Prone"],
            yticklabels=["Supine", "R-30°", "L-30°", "Fowler", "Prone"],
-           title="DecubiGuard: Posture Classification Confusion Matrix (INT8)",
+           title="ArigiaGaurd: Posture Classification Confusion Matrix (INT8)",
            ylabel='True Clinical Posture',
            xlabel='Predicted Posture')
 
@@ -281,7 +281,7 @@ def generate_system_flowchart_image(output_path: str = "docs/flowchart.png"):
     plt.close()
     print(f"[SUCCESS] System flowchart saved to {output_path}")
 
-def generate_schematic_graphic(output_path: str = "hardware/schematics/decubiguard_schematic.png"):
+def generate_schematic_graphic(output_path: str = "hardware/schematics/arigiagaurd_schematic.png"):
     """Generates the hardware schematic topology diagram."""
     print("[5/5] Generating Circuit Schematic Graphic...")
     fig, ax = plt.subplots(figsize=(10, 5), facecolor="white")
@@ -321,7 +321,7 @@ def generate_schematic_graphic(output_path: str = "hardware/schematics/decubigua
 
 def main():
     print("=========================================================")
-    print("   DecubiGuard Full Simulation & Benchmark Pipeline      ")
+    print("   ArigiaGaurd Full Simulation & Benchmark Pipeline      ")
     print("=========================================================")
 
     # 1. Posture Classification
@@ -346,11 +346,11 @@ def main():
 
     # 4. Diagrams
     generate_system_flowchart_image("docs/flowchart.png")
-    generate_schematic_graphic("hardware/schematics/decubiguard_schematic.png")
+    generate_schematic_graphic("hardware/schematics/arigiagaurd_schematic.png")
 
     # 5. Full Simulation Summary
     summary = {
-        "project": "DecubiGuard",
+        "project": "ArigiaGaurd",
         "competition": "IEEE MYOSA 6.0",
         "authors": [
             "Mohamed Elhariry"
@@ -373,7 +373,7 @@ def main():
             "results/posture_confusion_matrix.png",
             "results/simulated_telemetry.csv",
             "docs/flowchart.png",
-            "hardware/schematics/decubiguard_schematic.png"
+            "hardware/schematics/arigiagaurd_schematic.png"
         ]
     }
 

@@ -1,9 +1,9 @@
-# DecubiGuard: Bluetooth Low Energy (BLE) Protocol Specification
+# ArigiaGaurd: Bluetooth Low Energy (BLE) Protocol Specification
 
 ## 1. Overview
-DecubiGuard exposes a Bluetooth Low Energy (BLE 5.0) GATT Server profile enabling real-time telemetry streaming, clinical compliance logging, and priority alarm notifications to hospital caregiver tablets and nurse station monitors.
+ArigiaGaurd exposes a Bluetooth Low Energy (BLE 5.0) GATT Server profile enabling real-time telemetry streaming, clinical compliance logging, and priority alarm notifications to hospital caregiver tablets and nurse station monitors.
 
-- **Device Name**: `DecubiGuard`
+- **Device Name**: `ArigiaGaurd`
 - **Primary Service UUID**: `0000FE40-CC7A-482A-984A-7F2ED5B3E58F`
 
 ---

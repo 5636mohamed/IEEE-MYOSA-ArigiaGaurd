@@ -1,5 +1,5 @@
 """
-Unit tests for DecubiGuard TinyML feature extraction and classification pipeline.
+Unit tests for ArigiaGaurd TinyML feature extraction and classification pipeline.
 """
 
 import numpy as np

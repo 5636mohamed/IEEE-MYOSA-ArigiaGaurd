@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project": "DecubiGuard",
+  "project": "ArigiaGaurd",
   "description": "Label schema for the 5-class in-bed sleep posture and repositioning classification model trained in Edge Impulse Studio.",
   "classes": [
     {

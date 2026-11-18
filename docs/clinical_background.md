@@ -1,4 +1,4 @@
-# DecubiGuard: Clinical Background & Pathophysiology
+# ArigiaGaurd: Clinical Background & Pathophysiology
 
 ## 1. Pathophysiology of Pressure Injuries
 Pressure injuries (decubitus ulcers, bedsores) are localized damage to the skin and underlying soft tissue, typically over bony prominences (sacrum, ischial tuberosities, greater trochanters, heels). They arise from sustained mechanical compression, shear forces, and friction interacting with microclimate factors.
@@ -22,10 +22,10 @@ The local interface microclimate—characterized by temperature ($T$) and relati
 ## 4. Contactless Ballistocardiography (BCG) & Sleep-Aware Control
 Standard alternating-pressure air mattresses (APAMs) cycle pneumatically every 10–12 minutes regardless of patient status. The resulting cyclic inflation and deflation oscillations frequently fragment sleep and awaken vulnerable ICU or palliative patients.
 - **Ballistocardiography (BCG)** measures the micro-mechanical recoils of aortic blood ejection without skin electrodes.
-- **Sleep Phase Gating**: During deep slow-wave (non-REM) sleep, characterized by elevated heart-rate variability ($RMSSD$) and regularized respiratory rate, the DecubiGuard closed-loop controller safely defers non-urgent air-cell deflation cycles as long as the cumulative PTI remains below the critical ischemic safety threshold. This preserves vital restorative sleep architecture while strictly guaranteeing tissue safety.
+- **Sleep Phase Gating**: During deep slow-wave (non-REM) sleep, characterized by elevated heart-rate variability ($RMSSD$) and regularized respiratory rate, the ArigiaGaurd closed-loop controller safely defers non-urgent air-cell deflation cycles as long as the cumulative PTI remains below the critical ischemic safety threshold. This preserves vital restorative sleep architecture while strictly guaranteeing tissue safety.
 
 ## 5. Clinical Guidelines Concordance
-DecubiGuard directly aligns with the **International Guideline on Pressure Ulcer Prevention and Treatment** published jointly by the European Pressure Ulcer Advisory Panel (EPUAP), National Pressure Injury Advisory Panel (NPIAP), and Pan Pacific Pressure Injury Alliance (PPPIA):
+ArigiaGaurd directly aligns with the **International Guideline on Pressure Ulcer Prevention and Treatment** published jointly by the European Pressure Ulcer Advisory Panel (EPUAP), National Pressure Injury Advisory Panel (NPIAP), and Pan Pacific Pressure Injury Alliance (PPPIA):
 - Automated repositioning tracking verifies adherence to the recommended $30^\circ$ lateral tilt turning schedule.
 - Microclimate surveillance alerts against moisture-associated skin damage (MASD).
 - Contactless vitals provide non-intrusive cardiopulmonary surveillance without disturbing frail, fragile skin.

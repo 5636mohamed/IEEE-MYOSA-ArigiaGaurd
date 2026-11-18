@@ -102,7 +102,7 @@ void AlertSystem::updateDisplay(PostureClass posture, float confidence, float hr
                                float pressureMmhg, float pti, float humidityRh, float tempC,
                                bool activeBankA, uint8_t activeAlert) {
     // Serial console diagnostic summary representing the bedside OLED rendering
-    Serial.println(F("\n================= [DECUBIGUARD TELEMETRY] ================="));
+    Serial.println(F("\n================= [ARIGIAGAURD TELEMETRY] ================="));
     Serial.print(F("Posture   : ")); Serial.print(TinyMLInference::getPostureName(posture));
     Serial.print(F(" (")); Serial.print(confidence * 100.0f, 1); Serial.println(F("%)"));
     Serial.print(F("Vitals    : HR = ")); Serial.print(hr, 1); Serial.print(F(" bpm | RR = "));

@@ -1,7 +1,7 @@
-# DecubiGuard: Circuit Schematic & Interfacing Guide
+# ArigiaGaurd: Circuit Schematic & Interfacing Guide
 
 ## Overview
-This directory contains electrical schematics, pin mappings, and isolation topologies for DecubiGuard.
+This directory contains electrical schematics, pin mappings, and isolation topologies for ArigiaGaurd.
 
 ## Circuit Architecture
 

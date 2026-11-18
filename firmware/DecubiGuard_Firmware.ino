@@ -24,7 +24,7 @@ void setup() {
     digitalWrite(PIN_BUZZER, LOW);
     
     lastTurnTimestamp = millis();
-    Serial.println(F("[DecubiGuard] System Initialized Successfully."));
+    Serial.println(F("[ArigiaGaurd] System Initialized Successfully."));
 }
 
 void loop() {

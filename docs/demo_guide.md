@@ -1,11 +1,11 @@
-# DecubiGuard: Interactive Demonstration Guide
+# ArigiaGaurd: Interactive Demonstration Guide
 
-This guide details the 4-stage operational demonstration protocol for the DecubiGuard smart anti-bedsore mattress system during IEEE MYOSA 6.0 competition evaluations and live audience exhibitions.
+This guide details the 4-stage operational demonstration protocol for the ArigiaGaurd smart anti-bedsore mattress system during IEEE MYOSA 6.0 competition evaluations and live audience exhibitions.
 
 ---
 
 ## Equipment & Setup Checklist
-- [x] MYOSA Motherboard running `DecubiGuard_Firmware`
+- [x] MYOSA Motherboard running `ArigiaGaurd_Firmware`
 - [x] MYOSA IMU Board (MPU6050) installed in sacral sensor pod
 - [x] MYOSA Pressure Board (BMP180) connected to pneumatic manifold
 - [x] MYOSA Microclimate Board (SI7021) mounted at mattress-sheet interface
@@ -37,10 +37,10 @@ This guide details the 4-stage operational demonstration protocol for the Decubi
    ```
 2. Observe initialization sequence:
    ```
-   [BOOT] DecubiGuard System Initializing...
+   [BOOT] ArigiaGaurd System Initializing...
    [I2C] MPU6050: OK (0x68), BMP180: OK (0x77), SI7021: OK (0x40), OLED: OK (0x3C)
    [AI] Loading Quantized INT8 1D-CNN Posture Model... Ready (12.3 ms latency)
-   [BLE] Advertising as 'DecubiGuard-Caregiver'
+   [BLE] Advertising as 'ArigiaGaurd-Caregiver'
    ```
 3. Volunteer lies supine. Within 10–15 seconds, cardiac $J$-waves and respiratory envelope stabilize.
 

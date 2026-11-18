@@ -1,7 +1,7 @@
-# DecubiGuard: Hardware Architecture & Bill of Materials
+# ArigiaGaurd: Hardware Architecture & Bill of Materials
 
 ## Overview
-DecubiGuard is designed using modular components integrated around the MYOSA Mini IoT platform.
+ArigiaGaurd is designed using modular components integrated around the MYOSA Mini IoT platform.
 
 ## Bill of Materials (BOM)
 

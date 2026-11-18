@@ -40,11 +40,11 @@
 % PAGE 1
 % =========================================================
 \begin{center}
-    {\LARGE \textbf{DecubiGuard: A MYOSA-Based Smart Anti-Bedsore\\Mattress System with Contactless Vitals, TinyML Posture\\Classification, and Closed-Loop Pressure Redistribution}} \par \vspace{0.50em}
+    {\LARGE \textbf{ArigiaGaurd: A MYOSA-Based Smart Anti-Bedsore\\Mattress System with Contactless Vitals, TinyML Posture\\Classification, and Closed-Loop Pressure Redistribution}} \par \vspace{0.50em}
     {\normalsize Mohamed Elhariry} \par \vspace{0.12em}
     {\textit{Department of Biomedical and Mechatronics Engineering}} \par \vspace{0.06em}
     {\textit{Egypt Japan University of Science \& Technology (E-JUST)}} \par \vspace{0.06em}
-    {\small \url{github.com/5636mohamed/IEEE-MYOSA-DecubiGuard}}
+    {\small \url{github.com/5636mohamed/IEEE-MYOSA-ArigiaGaurd}}
 \end{center}
 
 \vspace{0.10em}
@@ -55,7 +55,7 @@
 \end{center}
 \vspace{-0.45em}
 
-\noindent Pressure ulcers affect over 10\% of hospitalized patients and over half of bedridden individuals, causing severe tissue ischemia, necrosis, and fatal sepsis. Despite clinical guidelines mandating two-hour repositioning, compliance remains under 30\% due to nursing shortages and sleep disruption. Standard alternating-pressure air mattresses operate open-loop on uncalibrated timers without posture or microclimate awareness, while adhesive wearable monitors inflict skin tears on geriatric tissue. This paper presents \textbf{DecubiGuard}, an autonomous smart anti-bedsore mattress system built entirely on the modular MYOSA Mini IoT platform. The system integrates a MYOSA IMU board to capture kinematics, classify five sleep postures via an on-device TinyML model, and extract contactless ballistocardiography (BCG) vitals. A MYOSA pressure sensor board calculates cumulative Pressure-Time Integrals (PTI) to regulate cell inflation and detect bottoming-out. A MYOSA humidity and temperature board monitors sacral microclimate to detect maceration risks. The MYOSA motherboard coordinates multi-sensor acquisition, digital filtering, TinyML inference, and sleep-phase-aware pressure redistribution, driving an AC compressor via an optoisolated zero-crossing TRIAC module. Real-time metrics are displayed on the OLED screen and buzzer, and telemetrically relayed via BLE to a caregiver app. Requiring no custom PCB, DecubiGuard provides an affordable, clinically grounded ambient monitoring paradigm.
+\noindent Pressure ulcers affect over 10\% of hospitalized patients and over half of bedridden individuals, causing severe tissue ischemia, necrosis, and fatal sepsis. Despite clinical guidelines mandating two-hour repositioning, compliance remains under 30\% due to nursing shortages and sleep disruption. Standard alternating-pressure air mattresses operate open-loop on uncalibrated timers without posture or microclimate awareness, while adhesive wearable monitors inflict skin tears on geriatric tissue. This paper presents \textbf{ArigiaGaurd}, an autonomous smart anti-bedsore mattress system built entirely on the modular MYOSA Mini IoT platform. The system integrates a MYOSA IMU board to capture kinematics, classify five sleep postures via an on-device TinyML model, and extract contactless ballistocardiography (BCG) vitals. A MYOSA pressure sensor board calculates cumulative Pressure-Time Integrals (PTI) to regulate cell inflation and detect bottoming-out. A MYOSA humidity and temperature board monitors sacral microclimate to detect maceration risks. The MYOSA motherboard coordinates multi-sensor acquisition, digital filtering, TinyML inference, and sleep-phase-aware pressure redistribution, driving an AC compressor via an optoisolated zero-crossing TRIAC module. Real-time metrics are displayed on the OLED screen and buzzer, and telemetrically relayed via BLE to a caregiver app. Requiring no custom PCB, ArigiaGaurd provides an affordable, clinically grounded ambient monitoring paradigm.
 
 \vspace{0.12em}
 \hrule
@@ -76,25 +76,25 @@ Hospital protocols rely upon two main preventative interventions: manual two-hou
 % PAGE 2
 % =========================================================
 \subsection{Motivation: Closed-Loop Ambient Intelligence}
-The critical gap between episodic nursing checks and continuous tissue ischemia motivates an autonomous, closed-loop smart mattress platform. Recent developments in MEMS accelerometry and ballistocardiography (BCG) enable unobtrusive extraction of cardiopulmonary vital signs without skin attachment [6]. Combining non-contact BCG with embedded machine learning (TinyML) [10] allows an intelligent mattress to classify patient postures [8, 9], track cumulative tissue loading, and modulate air cell pressure adaptively. DecubiGuard operationalizes this paradigm by implementing multi-modal sensing, TinyML posture inference, closed-loop pneumatic regulation, and mains-safe actuation entirely within the modular MYOSA Mini IoT architecture.
+The critical gap between episodic nursing checks and continuous tissue ischemia motivates an autonomous, closed-loop smart mattress platform. Recent developments in MEMS accelerometry and ballistocardiography (BCG) enable unobtrusive extraction of cardiopulmonary vital signs without skin attachment [6]. Combining non-contact BCG with embedded machine learning (TinyML) [10] allows an intelligent mattress to classify patient postures [8, 9], track cumulative tissue loading, and modulate air cell pressure adaptively. ArigiaGaurd operationalizes this paradigm by implementing multi-modal sensing, TinyML posture inference, closed-loop pneumatic regulation, and mains-safe actuation entirely within the modular MYOSA Mini IoT architecture.
 
 \section{Significance of the Application}
-DecubiGuard addresses a pressing biomedical need for bedridden elderly, paralyzed, and intensive care patients. By replacing open-loop mechanical timers with physiological closed-loop actuation, the system personalizes pressure redistribution while preserving patient sleep. Building the entire architecture on the modular MYOSA platform without external microcontrollers, bespoke PCBs, or commercial clinical monitors provides a low-cost, fully accessible, and rapidly deployable solution for home healthcare, nursing homes, and resource-constrained clinics.
+ArigiaGaurd addresses a pressing biomedical need for bedridden elderly, paralyzed, and intensive care patients. By replacing open-loop mechanical timers with physiological closed-loop actuation, the system personalizes pressure redistribution while preserving patient sleep. Building the entire architecture on the modular MYOSA platform without external microcontrollers, bespoke PCBs, or commercial clinical monitors provides a low-cost, fully accessible, and rapidly deployable solution for home healthcare, nursing homes, and resource-constrained clinics.
 
 \section{MYOSA Platform Utilization}
-The MYOSA motherboard functions as the central computational engine of DecubiGuard. It directly coordinates: (1) synchronized multi-sensor I2C acquisition from the IMU, pressure, and microclimate boards; (2) dual-path digital filtering and BCG heart and breathing rate extraction; (3) lightweight on-device TinyML inference for real-time 5-class posture classification; (4) dynamic calculation of cumulative Pressure-Time Integrals (PTI) to schedule alternating pressure cycles; (5) optoisolated TRIAC phase control for the mains compressor; (6) local OLED and buzzer bedside alerts; and (7) BLE telemetry streaming to the MYOSA mobile application. Consolidating these diverse modalities onto a single board eliminates inter-processor latency and hardware failure points.
+The MYOSA motherboard functions as the central computational engine of ArigiaGaurd. It directly coordinates: (1) synchronized multi-sensor I2C acquisition from the IMU, pressure, and microclimate boards; (2) dual-path digital filtering and BCG heart and breathing rate extraction; (3) lightweight on-device TinyML inference for real-time 5-class posture classification; (4) dynamic calculation of cumulative Pressure-Time Integrals (PTI) to schedule alternating pressure cycles; (5) optoisolated TRIAC phase control for the mains compressor; (6) local OLED and buzzer bedside alerts; and (7) BLE telemetry streaming to the MYOSA mobile application. Consolidating these diverse modalities onto a single board eliminates inter-processor latency and hardware failure points.
 
 \subsection{Sensors and Actuators Used}
-DecubiGuard leverages three MYOSA sensor boards and three MYOSA output peripherals, detailed in Table 1.
+ArigiaGaurd leverages three MYOSA sensor boards and three MYOSA output peripherals, detailed in Table 1.
 
 \vspace{0.12em}
-\noindent\textbf{Table 1: MYOSA sensor and actuator modules integrated in DecubiGuard}
+\noindent\textbf{Table 1: MYOSA sensor and actuator modules integrated in ArigiaGaurd}
 \vspace{0.06em}
 
 \noindent{\footnotesize
 \begin{tabular}{@{}p{2.8cm} p{2.2cm} p{11.0cm}@{}}
 \toprule
-\textbf{Module} & \textbf{Type} & \textbf{Function in DecubiGuard} \\
+\textbf{Module} & \textbf{Type} & \textbf{Function in ArigiaGaurd} \\
 \midrule
 MYOSA IMU board & Sensor (I2C) & 6-axis MPU6050 captures torso tilt angles for TinyML 5-posture classification, tracks turn compliance, and records micro-vibrations for contactless BCG vitals. \\
 MYOSA pressure board & Sensor (I2C) & BMP180 barometric sensor pneumatically coupled to the mattress manifold, continuously measuring chamber pressure (Pa) to calculate cumulative PTI and bottoming-out. \\
@@ -124,10 +124,10 @@ The plug-and-play modularity of the MYOSA Mini platform eliminates the need for 
 
 \noindent \textbf{On-Device TinyML Posture Classification.} To overcome the limitations of simple threshold-based angle detection, an on-device TinyML classifier (1D Convolutional Neural Network, quantized to INT8) was trained using Edge Impulse and deployed on the MYOSA ESP32 microcontroller [10]. Operating on 2-second windows of 3-axis accelerometer data, the model classifies patient posture into five clinical states: \textit{Supine, Right-Lateral 30°, Left-Lateral 30°, Prone, and Fowler's Position} ($>94\%$ accuracy).
 
-\noindent \textbf{Closed-Loop Dynamic Pressure-Time Integral (PTI) Engine.} Rather than relying on a static timer, DecubiGuard calculates the cumulative Pressure-Time Integral ($PTI = \int [P_{\text{cell}}(t) - P_{\text{capillary}}]^+ \, dt$). When accumulated ischemia over the loaded chamber exceeds clinical thresholds ($>45$~mmHg for $>90$~min), the system triggers the TRIAC compressor and directional solenoid to vent the ischemic chamber and inflate the alternate bank. Furthermore, beat-to-beat $J$-$J$ heart rate variability ($RMSSD$) is computed to recognize deep non-REM sleep; if cumulative tissue loading remains within safe physiological margins, inflation cycles are automatically softened and deferred to prevent sleep fragmentation.
+\noindent \textbf{Closed-Loop Dynamic Pressure-Time Integral (PTI) Engine.} Rather than relying on a static timer, ArigiaGaurd calculates the cumulative Pressure-Time Integral ($PTI = \int [P_{\text{cell}}(t) - P_{\text{capillary}}]^+ \, dt$). When accumulated ischemia over the loaded chamber exceeds clinical thresholds ($>45$~mmHg for $>90$~min), the system triggers the TRIAC compressor and directional solenoid to vent the ischemic chamber and inflate the alternate bank. Furthermore, beat-to-beat $J$-$J$ heart rate variability ($RMSSD$) is computed to recognize deep non-REM sleep; if cumulative tissue loading remains within safe physiological margins, inflation cycles are automatically softened and deferred to prevent sleep fragmentation.
 
 \section{System Architecture and Control Pipeline}
-The end-to-end DecubiGuard architecture coordinates five sequential layers, from physical sensing to autonomous actuation and telemetric logging, as illustrated in Figure 1.
+The end-to-end ArigiaGaurd architecture coordinates five sequential layers, from physical sensing to autonomous actuation and telemetric logging, as illustrated in Figure 1.
 
 \vspace{0.25em}
 \begin{center}
@@ -188,7 +188,7 @@ The end-to-end DecubiGuard architecture coordinates five sequential layers, from
 \end{center}
 \vspace{0.10em}
 
-\noindent \textbf{Figure 1: DecubiGuard Edge-AI Signal Processing and Closed-Loop Control Architecture.} Raw sensor streams are filtered on-device, evaluated by the TinyML posture classifier and BCG vital sign extractor, and synthesized by the dynamic PTI engine to drive optoisolated pneumatic actuation and caregiver alerts.
+\noindent \textbf{Figure 1: ArigiaGaurd Edge-AI Signal Processing and Closed-Loop Control Architecture.} Raw sensor streams are filtered on-device, evaluated by the TinyML posture classifier and BCG vital sign extractor, and synthesized by the dynamic PTI engine to drive optoisolated pneumatic actuation and caregiver alerts.
 
 \newpage
 % =========================================================
@@ -250,13 +250,13 @@ The end-to-end DecubiGuard architecture coordinates five sequential layers, from
 \end{center}
 \vspace{-0.35em}
 
-\noindent \textbf{Figure 2: MYOSA-Based DecubiGuard Modular Hardware System Architecture.} All modules within the dashed line are co-located in the bedside controller. The MYOSA motherboard communicates over I2C with sensors and local outputs, controls the optoisolated high-voltage compressor, and streams wireless telemetry to the caregiver app.
+\noindent \textbf{Figure 2: MYOSA-Based ArigiaGaurd Modular Hardware System Architecture.} All modules within the dashed line are co-located in the bedside controller. The MYOSA motherboard communicates over I2C with sensors and local outputs, controls the optoisolated high-voltage compressor, and streams wireless telemetry to the caregiver app.
 
 \vspace{0.18em}
-\noindent \textbf{Longitudinal Telemetry and Caregiver Mobile Application.} DecubiGuard continuously broadcasts real-time vitals, posture state, elapsed turn countdown, and manifold pressures via custom Bluetooth Low Energy (BLE) characteristics. In addition, every turn event, bottoming-out warning, and maceration excursion is logged to persistent flash memory on the MYOSA motherboard. This creates an objective clinical audit trail that enables caregivers to assess protocol compliance and helps clinicians monitor rehabilitation progress.
+\noindent \textbf{Longitudinal Telemetry and Caregiver Mobile Application.} ArigiaGaurd continuously broadcasts real-time vitals, posture state, elapsed turn countdown, and manifold pressures via custom Bluetooth Low Energy (BLE) characteristics. In addition, every turn event, bottoming-out warning, and maceration excursion is logged to persistent flash memory on the MYOSA motherboard. This creates an objective clinical audit trail that enables caregivers to assess protocol compliance and helps clinicians monitor rehabilitation progress.
 
 \section{Intended Live Demonstration at the Conference Venue}
-The DecubiGuard demonstration at the IEEE conference venue will execute across four progressive clinical stages:
+The ArigiaGaurd demonstration at the IEEE conference venue will execute across four progressive clinical stages:
 
 \noindent \textbf{Stage 1 -- Contactless Vitals and BCG Extraction.} A volunteer participant will lie supine on the mattress overlay. Within 12 seconds of motionless rest, the MPU6050 captures micro-vibrations, and the OLED display visualizes the BCG waveform alongside calculated heart rate (BPM) and respiration rate (BrPM), verifying zero-skin-contact vitals monitoring.
 
@@ -267,10 +267,10 @@ The DecubiGuard demonstration at the IEEE conference venue will execute across f
 \noindent \textbf{Stage 4 -- Microclimate Maceration Alert and Mains Electrical Safety.} Saline-dampened gauze placed on the SI7021 sensor will simulate localized sweat accumulation, triggering an immediate maceration alarm ($>75\%$~RH) on the mobile app. Finally, an oscilloscope connected across the TRIAC terminals will verify clean zero-crossing switching without line transients, demonstrating rigorous patient electrical isolation.
 
 \section{Conclusion}
-DecubiGuard provides an autonomous, accessible, and clinically grounded solution to the persistent challenge of pressure injury prevention in bedridden individuals. By unifying contactless BCG vitals extraction, on-device TinyML posture classification, closed-loop pressure-time regulation, and optoisolated mains safety entirely on the modular MYOSA Mini platform, the prototype demonstrates that comprehensive ambient intelligence can be deployed without costly clinical hardware.
+ArigiaGaurd provides an autonomous, accessible, and clinically grounded solution to the persistent challenge of pressure injury prevention in bedridden individuals. By unifying contactless BCG vitals extraction, on-device TinyML posture classification, closed-loop pressure-time regulation, and optoisolated mains safety entirely on the modular MYOSA Mini platform, the prototype demonstrates that comprehensive ambient intelligence can be deployed without costly clinical hardware.
 
 \vspace{0.10em}
-\noindent Complete source code, schematics, and mobile application files are openly available at: \url{https://github.com/5636mohamed/IEEE-MYOSA-DecubiGuard}.
+\noindent Complete source code, schematics, and mobile application files are openly available at: \url{https://github.com/5636mohamed/IEEE-MYOSA-ArigiaGaurd}.
 
 \newpage
 % =========================================================

@@ -1,6 +1,6 @@
 solid sensor_pod_enclosure_top
   // HARDWARE IMPLEMENTATION NOTICE:
-  // This part represents the physical 3D top enclosure shell for the DecubiGuard sacral sensor pod.
+  // This part represents the physical 3D top enclosure shell for the ArigiaGaurd sacral sensor pod.
   // Physical manufacturing is required on an FDM/SLA 3D printer (Biocompatible PETG/ABS).
   // This hardware component cannot be simulated in software.
   facet normal 0.000000e+00 0.000000e+00 1.000000e+00

@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @brief Main firmware entry point for DecubiGuard on the MYOSA platform.
+ * @brief Main firmware entry point for ArigiaGaurd on the MYOSA platform.
  * @author Mohamed Elhariry
  * @institution Egypt-Japan University of Science and Technology (E-JUST)
  */
@@ -36,7 +36,7 @@ void setup() {
     while (!Serial && millis() < 2000);
 
     Serial.println(F("\n======================================================="));
-    Serial.println(F("   DecubiGuard: Smart Anti-Bedsore Mattress System     "));
+    Serial.println(F("   ArigiaGaurd: Smart Anti-Bedsore Mattress System     "));
     Serial.println(F("      IEEE MYOSA 6.0 Competition Entry - E-JUST       "));
     Serial.println(F(" Author: Mohamed Elhariry                         "));
     Serial.println(F("=======================================================\n"));

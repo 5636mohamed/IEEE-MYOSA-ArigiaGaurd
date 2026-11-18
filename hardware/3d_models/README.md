@@ -1,7 +1,7 @@
-# DecubiGuard: 3D CAD Enclosure & Mechanical Mounts
+# ArigiaGaurd: 3D CAD Enclosure & Mechanical Mounts
 
 ## Overview
-This directory contains the physical enclosure designs for housing the DecubiGuard sensor pod and pneumatic manifold bracket onto standard hospital bed frames.
+This directory contains the physical enclosure designs for housing the ArigiaGaurd sensor pod and pneumatic manifold bracket onto standard hospital bed frames.
 
 ## Files
 1. `sensor_pod_enclosure_top.stl`: Top snap-fit shell for the MPU6050 and SI7021 sub-assembly.

@@ -1,4 +1,4 @@
-# DecubiGuard: In-Bed Posture & Ballistocardiography Data Collection Protocol
+# ArigiaGaurd: In-Bed Posture & Ballistocardiography Data Collection Protocol
 
 ## 1. Ethical Governance & Volunteer Consent
 All data collection procedures conform to the Declaration of Helsinki and institutional ethical guidelines established by the Institutional Review Board (IRB) of the Egypt-Japan University of Science and Technology (E-JUST). Prior to experimentation, all volunteers provided written informed consent.

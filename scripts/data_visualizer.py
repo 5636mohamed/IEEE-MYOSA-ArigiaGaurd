@@ -1,5 +1,5 @@
 """
-DecubiGuard - Multi-Channel Sensor & Telemetry Data Visualizer
+ArigiaGaurd - Multi-Channel Sensor & Telemetry Data Visualizer
 Generates multi-panel diagnostic plots for kinematics, BCG vitals, pneumatic alternation, and microclimate.
 """
 
@@ -59,7 +59,7 @@ def plot_telemetry(data, output_file: str = "docs/telemetry_plot.png"):
     ax1.plot(data["t"], data["ax"], color="#ff7f0e", label="Accel X (Lateral Tilt)")
     ax1.axvline(35.0, color="gray", linestyle="--", label="Lateral Turn (30°)")
     ax1.set_ylabel("Accel (g)")
-    ax1.set_title("DecubiGuard Multi-Modal Sensor Telemetry: Kinematics & Posture", fontsize=11, fontweight="bold")
+    ax1.set_title("ArigiaGaurd Multi-Modal Sensor Telemetry: Kinematics & Posture", fontsize=11, fontweight="bold")
     ax1.legend(loc="upper right", fontsize=8)
     ax1.grid(True, linestyle=":", alpha=0.6)
 
@@ -103,7 +103,7 @@ def plot_telemetry(data, output_file: str = "docs/telemetry_plot.png"):
     print(f"[SUCCESS] Multi-channel telemetry plot saved to {output_file}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="DecubiGuard Data Visualizer")
+    parser = argparse.ArgumentParser(description="ArigiaGaurd Data Visualizer")
     parser.add_argument("--output", type=str, default="docs/telemetry_plot.png", help="Path to save output figure")
     parser.add_argument("--duration", type=float, default=60.0, help="Duration of simulation in seconds")
     args = parser.parse_args()
