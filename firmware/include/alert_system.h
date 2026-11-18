@@ -1,7 +1,7 @@
 /**
  * @file alert_system.h
  * @brief Bedside OLED display, acoustic buzzer, and optoisolated TRIAC compressor actuation.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  */
 
 #ifndef ALERT_SYSTEM_H

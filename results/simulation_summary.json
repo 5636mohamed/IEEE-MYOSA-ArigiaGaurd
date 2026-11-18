@@ -2,7 +2,8 @@
   "project": "ArigiaGaurd",
   "competition": "IEEE MYOSA 6.0",
   "authors": [
-    "Mohamed Elhariry"
+    "Mohamed Elhariry",
+    "Ahmed Elshentenawy"
   ],
   "system_status": "VALIDATED_SIMULATION_READY",
   "tinyml_model": {
@@ -27,14 +28,14 @@
     "ground_truth_rr_brpm": 15.0,
     "estimated_rr_brpm": 14.99,
     "rr_error_brpm": 0.01,
-    "rmssd_ms": 14.22,
+    "rmssd_ms": 17.76,
     "is_deep_sleep": false
   },
   "closed_loop_telemetry": {
     "duration_simulated_seconds": 180,
     "alternation_cycles_triggered": 1,
     "maceration_alerts_raised": 41,
-    "peak_pti_observed": 177.36
+    "peak_pti_observed": 173.97
   },
   "artifacts_generated": [
     "results/simulation_summary.json",

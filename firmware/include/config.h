@@ -1,7 +1,7 @@
 /**
  * @file config.h
  * @brief Global configuration constants, pinouts, and clinical thresholds for ArigiaGaurd.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  * @institution Egypt-Japan University of Science and Technology (E-JUST)
  */
 

@@ -1,7 +1,7 @@
 /**
  * @file tinyml_inference.h
  * @brief Edge Impulse quantized 1D-CNN posture classifier wrapper for ArigiaGaurd.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  */
 
 #ifndef TINYML_INFERENCE_H

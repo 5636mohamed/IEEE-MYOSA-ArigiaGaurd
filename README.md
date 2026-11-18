@@ -5,7 +5,7 @@
 > IEEE MYOSA Competition Entry  
 > Department of Biomedical and Mechatronics Engineering  
 > Egypt Japan University of Science & Technology (E-JUST)  
-> Author: **Mohamed Elhariry**
+> Authors: **Mohamed Elhariry, Ahmed Elshentenawy**
 
 ---
 
@@ -102,12 +102,10 @@ The ArigiaGaurd processing pipeline proceeds across five sequential edge-computi
 
 ---
 
-## Author & Acknowledgments
+## Authors & Acknowledgments
 
-- **Mohamed Elhariry**
+- **Mohamed Elhariry**  
+  *Department of Biomedical and Mechatronics Engineering, Egypt Japan University of Science and Technology (E-JUST)*
 
-*Department of Mechatronics and Robotics Engineering, Egypt Japan University of Science and Technology (E-JUST)*
-
-*Department of Biomedical and Bioinformatics Engineering, Egypt Japan University of Science and Technology (E-JUST)*
-
-*Department of Electronics and Communication Engineering, Egypt Japan University of Science and Technology (E-JUST)*
+- **Ahmed Elshentenawy**  
+  *Department of Computer Science and Engineering, Egypt Japan University of Science and Technology (E-JUST)*

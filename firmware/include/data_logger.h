@@ -1,7 +1,7 @@
 /**
  * @file data_logger.h
  * @brief Circular buffer telemetry and clinical audit logging for ArigiaGaurd.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  */
 
 #ifndef DATA_LOGGER_H

@@ -353,7 +353,8 @@ def main():
         "project": "ArigiaGaurd",
         "competition": "IEEE MYOSA 6.0",
         "authors": [
-            "Mohamed Elhariry"
+            "Mohamed Elhariry",
+            "Ahmed Elshentenawy"
         ],
         "system_status": "VALIDATED_SIMULATION_READY",
         "tinyml_model": {

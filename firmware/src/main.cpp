@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @brief Main firmware entry point for ArigiaGaurd on the MYOSA platform.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  * @institution Egypt-Japan University of Science and Technology (E-JUST)
  */
 
@@ -38,7 +38,7 @@ void setup() {
     Serial.println(F("\n======================================================="));
     Serial.println(F("   ArigiaGaurd: Smart Anti-Bedsore Mattress System     "));
     Serial.println(F("      IEEE MYOSA 6.0 Competition Entry - E-JUST       "));
-    Serial.println(F(" Author: Mohamed Elhariry                         "));
+    Serial.println(F(" Authors: Mohamed Elhariry, Ahmed Elshentenawy         "));
     Serial.println(F("=======================================================\n"));
 
     // 1. Initialize Subsystems

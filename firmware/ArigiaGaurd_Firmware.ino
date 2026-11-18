@@ -1,3 +1,10 @@
+/**
+ * @file ArigiaGaurd_Firmware.ino
+ * @brief ArigiaGaurd Smart Anti-Bedsore Mattress System Main Firmware
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
+ * @institution Egypt-Japan University of Science and Technology (E-JUST)
+ */
+
 #include <Wire.h>
 #include "include/config.h"
 

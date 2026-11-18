@@ -1,7 +1,7 @@
 /**
  * @file alert_system.cpp
  * @brief Implementations of bedside OLED feedback, acoustic buzzer, and TRIAC AC actuation.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  */
 
 #include "alert_system.h"

@@ -1,7 +1,7 @@
 /**
  * @file sensor_acquisition.h
  * @brief Multi-modal sensor acquisition subsystem for ArigiaGaurd (MPU6050, BMP180, SI7021).
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  */
 
 #ifndef SENSOR_ACQUISITION_H

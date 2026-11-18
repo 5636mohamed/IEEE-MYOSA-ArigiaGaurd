@@ -1,7 +1,7 @@
 /**
  * @file signal_processing.h
  * @brief Digital filtering, BCG vitals extraction, and PTI ischemia accumulation.
- * @author Mohamed Elhariry
+ * @authors Mohamed Elhariry, Ahmed Elshentenawy
  */
 
 #ifndef SIGNAL_PROCESSING_H
