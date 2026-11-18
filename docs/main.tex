@@ -1,6 +1,8 @@
-﻿\documentclass[10pt,a4paper]{article}
+﻿\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[top=1.85cm, bottom=1.85cm, left=2.0cm, right=2.0cm]{geometry}
+\usepackage[top=1.30cm, bottom=1.30cm, left=1.40cm, right=1.40cm]{geometry}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath}
@@ -17,12 +19,19 @@
     urlcolor=black
 }
 \usepackage{enumitem}
+\usepackage{titlesec}
 
 \linespread{1.0}
-\setlength{\parskip}{0.22em}
+\setlength{\parskip}{0.14em}
 \setlength{\parindent}{1.2em}
 
-% Custom Colors for Clean Diagrams
+% Professional Heading Formatting
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titlespacing*{\section}{0pt}{0.60em plus 0.10em minus 0.05em}{0.20em plus 0.05em minus 0.05em}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.45em plus 0.08em minus 0.05em}{0.18em plus 0.05em minus 0.05em}
+
+% Custom Colors for Publication-Grade Diagrams
 \definecolor{boxblue}{RGB}{235, 243, 250}
 \definecolor{boxdarkblue}{RGB}{26, 82, 118}
 \definecolor{boxgreen}{RGB}{234, 250, 241}
@@ -37,10 +46,10 @@
 \begin{document}
 
 % =========================================================
-% PAGE 1
+% PAGE 1: Title, Authors, Abstract, Introduction, Significance
 % =========================================================
 \begin{center}
-    {\LARGE \textbf{ArigiaGaurd: A MYOSA-Based Smart Anti-Bedsore\\Mattress System with Contactless Vitals, TinyML Posture\\Classification, and Closed-Loop Pressure Redistribution}} \par \vspace{0.45em}
+    {\LARGE \textbf{ArigiaGaurd: A MYOSA-Based Smart Anti-Bedsore\\Mattress System with Contactless Vitals, TinyML Posture\\Classification, and Closed-Loop Pressure Redistribution}} \par \vspace{0.35em}
     \begin{tabular}{cc}
         \textbf{Mohamed Elhariry} & \textbf{Ahmed Elshentenawy} \\
         {\small \textit{Dept. of Biomedical and Mechatronics Engineering}} & {\small \textit{Dept. of Computer Science and Engineering}} \\
@@ -49,9 +58,9 @@
     \end{tabular}
 \end{center}
 
-\vspace{0.10em}
+\vspace{0.06em}
 \hrule
-\vspace{0.12em}
+\vspace{0.08em}
 \begin{center}
     \textbf{\large Abstract}
 \end{center}
@@ -59,9 +68,9 @@
 
 \noindent Pressure ulcers affect over 10\% of hospitalized patients and over half of bedridden individuals, causing severe tissue ischemia, necrosis, and fatal sepsis. Despite clinical guidelines mandating two-hour repositioning, compliance remains under 30\% due to nursing shortages and sleep disruption. Standard alternating-pressure air mattresses operate open-loop on uncalibrated timers without posture or microclimate awareness, while adhesive wearable monitors inflict skin tears on geriatric tissue. This paper presents \textbf{ArigiaGaurd}, an autonomous smart anti-bedsore mattress system built entirely on the modular MYOSA Mini IoT platform. The system integrates a MYOSA IMU board to capture kinematics, classify five sleep postures via an on-device TinyML model, and extract contactless ballistocardiography (BCG) vitals. A MYOSA pressure sensor board calculates cumulative Pressure-Time Integrals (PTI) to regulate cell inflation and detect bottoming-out. A MYOSA humidity and temperature board monitors sacral microclimate to detect maceration risks. The MYOSA motherboard coordinates multi-sensor acquisition, digital filtering, TinyML inference, and sleep-phase-aware pressure redistribution, driving an AC compressor via an optoisolated zero-crossing TRIAC module. Real-time metrics are displayed on the OLED screen and buzzer, and telemetrically relayed via BLE to a caregiver app. Requiring no custom PCB, ArigiaGaurd provides an affordable, clinically grounded ambient monitoring paradigm.
 
-\vspace{0.12em}
+\vspace{0.08em}
 \hrule
-\vspace{0.30em}
+\vspace{0.20em}
 
 \section{Introduction}
 
@@ -71,30 +80,30 @@ Pressure ulcers, or decubitus injuries, represent debilitating and costly compli
 The pathophysiological etiology involves sustained mechanical loading over skeletal prominences such as the sacrum, trochanter, and heels [2]. When interface pressure exceeds capillary opening thresholds ($\approx 32$~mmHg), microvascular perfusion is occluded, initiating tissue ischemia, metabolic waste accumulation, and deep cellular deformation [11]. Subsequent reperfusion generates reactive oxygen species, accelerating tissue necrosis. In severe stages, ulceration penetrates deep muscle and bone, incurring treatment expenditures exceeding \$11 billion annually in the US alone.
 
 \subsection{Limitations of Existing Prevention and Monitoring Methods}
-Hospital protocols rely upon two main preventative interventions: manual two-hour repositioning regimens [4] and alternating-pressure air mattresses (APAMs) [3]. Manual turning protocols suffer from low compliance due to severe nursing shortages and disrupt nocturnal restorative sleep. Commercial APAMs cyclically inflate interleaved air bladders on uncalibrated mechanical timers regardless of patient posture or body weight, failing to recognize voluntary movements or detect bottoming-out conditions [3]. Furthermore, conventional mattresses do not monitor the sacral microclimate—where perspiration and incontinence cause skin maceration, reducing tissue tolerance to shear by over 40\% [5]. Finally, monitoring vitals in bedridden patients requires adhesive electrodes that cause painful skin tears in frail geriatric populations [12].
+Hospital protocols rely upon two main preventative interventions: manual two-hour repositioning regimens [4] and alternating-pressure air mattresses (APAMs) [3]. Manual turning protocols suffer from low compliance due to severe nursing shortages and disrupt nocturnal restorative sleep. Commercial APAMs cyclically inflate interleaved air bladders on uncalibrated mechanical timers regardless of patient posture or body weight, failing to recognize voluntary movements or detect bottoming-out conditions [3]. Furthermore, conventional mattresses do not monitor the sacral microclimate---where perspiration and incontinence cause skin maceration, reducing tissue tolerance to shear by over 40\% [5]. Finally, monitoring vitals in bedridden patients requires adhesive electrodes that cause painful skin tears in frail geriatric populations [12].
 
-\newpage
-% =========================================================
-% PAGE 2
-% =========================================================
 \subsection{Motivation: Closed-Loop Ambient Intelligence}
 The critical gap between episodic nursing checks and continuous tissue ischemia motivates an autonomous, closed-loop smart mattress platform. Recent developments in MEMS accelerometry and ballistocardiography (BCG) enable unobtrusive extraction of cardiopulmonary vital signs without skin attachment [6]. Combining non-contact BCG with embedded machine learning (TinyML) [10] allows an intelligent mattress to classify patient postures [8, 9], track cumulative tissue loading, and modulate air cell pressure adaptively. ArigiaGaurd operationalizes this paradigm by implementing multi-modal sensing, TinyML posture inference, closed-loop pneumatic regulation, and mains-safe actuation entirely within the modular MYOSA Mini IoT architecture.
 
 \section{Significance of the Application}
 ArigiaGaurd addresses a pressing biomedical need for bedridden elderly, paralyzed, and intensive care patients. By replacing open-loop mechanical timers with physiological closed-loop actuation, the system personalizes pressure redistribution while preserving patient sleep. Building the entire architecture on the modular MYOSA platform without external microcontrollers, bespoke PCBs, or commercial clinical monitors provides a low-cost, fully accessible, and rapidly deployable solution for home healthcare, nursing homes, and resource-constrained clinics.
 
+% \newpage
+% =========================================================
+% PAGE 2: MYOSA Platform Utilization, Table 1, Circuit & TinyML
+% =========================================================
 \section{MYOSA Platform Utilization}
 The MYOSA motherboard functions as the central computational engine of ArigiaGaurd. It directly coordinates: (1) synchronized multi-sensor I2C acquisition from the IMU, pressure, and microclimate boards; (2) dual-path digital filtering and BCG heart and breathing rate extraction; (3) lightweight on-device TinyML inference for real-time 5-class posture classification; (4) dynamic calculation of cumulative Pressure-Time Integrals (PTI) to schedule alternating pressure cycles; (5) optoisolated TRIAC phase control for the mains compressor; (6) local OLED and buzzer bedside alerts; and (7) BLE telemetry streaming to the MYOSA mobile application. Consolidating these diverse modalities onto a single board eliminates inter-processor latency and hardware failure points.
 
 \subsection{Sensors and Actuators Used}
 ArigiaGaurd leverages three MYOSA sensor boards and three MYOSA output peripherals, detailed in Table 1.
 
-\vspace{0.12em}
+\vspace{0.08em}
 \noindent\textbf{Table 1: MYOSA sensor and actuator modules integrated in ArigiaGaurd}
-\vspace{0.06em}
+\vspace{0.05em}
 
 \noindent{\footnotesize
-\begin{tabular}{@{}p{2.8cm} p{2.2cm} p{11.0cm}@{}}
+\begin{tabular}{@{}p{3.2cm} p{2.2cm} p{11.6cm}@{}}
 \toprule
 \textbf{Module} & \textbf{Type} & \textbf{Function in ArigiaGaurd} \\
 \midrule
@@ -108,73 +117,73 @@ BLE radio (on-board) & Communication & 2.4~GHz BLE 5.0 transceiver broadcasting 
 \end{tabular}
 }
 
-\vspace{0.18em}
+\vspace{0.12em}
 \noindent The IMU board is installed along the central thoracic midline within the mattress foundation, enabling simultaneous capture of gross postural transitions and subtle mechanical cardiovascular recoil vectors [6], while the pressure and microclimate boards provide continuous feedback from the pneumatic and tissue interfaces.
 
 \subsection{Exploiting the MYOSA Platform Potential}
 The plug-and-play modularity of the MYOSA Mini platform eliminates the need for manual wire harnesses or custom daughterboards. Because each peripheral board interfaces natively over standard I2C buses (MPU6050 at \texttt{0x68}, BMP180 at \texttt{0x77}, SI7021 at \texttt{0x40}, and SSD1306 at \texttt{0x3C}), all four primary modules share a single two-wire bus without electrical contention. Hardware-level abstraction allowed the design team to focus on digital signal processing, on-device TinyML optimization, and closed-loop clinical safety interlocks.
 
-\newpage
-% =========================================================
-% PAGE 3
-% =========================================================
 \section{Additional Circuit, TinyML, and Software Development}
 
 \noindent \textbf{Additional Hardware and Mains Safety Circuitry.} Two external hardware assemblies were developed to support the MYOSA core. First, a medical-grade dual-chamber alternating air mattress overlay (comprising 18 transverse TPU air bladders partitioned into interleaved Banks A and B) was coupled to a 12V DC directional solenoid manifold and an AC diaphragm compressor. Second, to address the mains voltage safety hazard of driving line-voltage AC loads adjacent to a patient, a dedicated optoisolated zero-crossing switching stage was engineered for the MYOSA TRIAC board. An optical isolator (MOC3041) guarantees 5,000~V RMS galvanic separation between the 3.3V DC logic bus and the AC compressor mains. Firing strictly at AC line zero-crossings eliminates inductive electromagnetic interference (EMI) that could corrupt sensitive I2C sensor communications. An RC snubber network ($0.1~\mu\text{F}$ Class-X2 capacitor and $47~\Omega$ resistor) suppresses inductive back-EMF spikes from the compressor motor, complemented by a 2A fast-blow ceramic fuse in an earth-grounded chassis.
 
 \noindent \textbf{Signal Processing and Contactless BCG Pipeline.} Vertical acceleration is sampled at 100~Hz and routed through a dual-path 4th-order digital Butterworth bandpass filter. The respiratory path (0.1--0.5~Hz) isolates thoracic breathing excursions to compute respiration rate (BrPM). The cardiac path (0.8--3.5~Hz) extracts mechanical ballistocardiographic $J$-wave complexes corresponding to aortic blood ejection [6]. Heart rate (BPM) and beat-to-beat ($J$-$J$) intervals are extracted using an adaptive threshold peak detector with an energy operator. An integrated motion-rejection algorithm detects gross patient shifts and suppresses vitals calculation during movement artifacts.
 
-\noindent \textbf{On-Device TinyML Posture Classification.} To overcome the limitations of simple threshold-based angle detection, an on-device TinyML classifier (1D Convolutional Neural Network, quantized to INT8) was trained using Edge Impulse and deployed on the MYOSA ESP32 microcontroller [10]. Operating on 2-second windows of 3-axis accelerometer data, the model classifies patient posture into five clinical states: \textit{Supine, Right-Lateral 30°, Left-Lateral 30°, Prone, and Fowler's Position} ($>94\%$ accuracy).
+\noindent \textbf{On-Device TinyML Posture Classification.} To overcome the limitations of simple threshold-based angle detection, an on-device TinyML classifier (1D Convolutional Neural Network, quantized to INT8) was trained using Edge Impulse and deployed on the MYOSA ESP32 microcontroller [10]. Operating on 2-second windows of 3-axis accelerometer data, the model classifies patient posture into five clinical states: \textit{Supine, Right-Lateral $30^\circ$, Left-Lateral $30^\circ$, Prone, and Fowler's Position} ($>94\%$ accuracy).
 
 \noindent \textbf{Closed-Loop Dynamic Pressure-Time Integral (PTI) Engine.} Rather than relying on a static timer, ArigiaGaurd calculates the cumulative Pressure-Time Integral ($PTI = \int [P_{\text{cell}}(t) - P_{\text{capillary}}]^+ \, dt$). When accumulated ischemia over the loaded chamber exceeds clinical thresholds ($>45$~mmHg for $>90$~min), the system triggers the TRIAC compressor and directional solenoid to vent the ischemic chamber and inflate the alternate bank. Furthermore, beat-to-beat $J$-$J$ heart rate variability ($RMSSD$) is computed to recognize deep non-REM sleep; if cumulative tissue loading remains within safe physiological margins, inflation cycles are automatically softened and deferred to prevent sleep fragmentation.
 
+% \newpage
+% =========================================================
+% PAGE 3: System Architecture & Both High-Quality Diagrams
+% =========================================================
 \section{System Architecture and Control Pipeline}
 The end-to-end ArigiaGaurd architecture coordinates five sequential layers, from physical sensing to autonomous actuation and telemetric logging, as illustrated in Figure 1.
 
-\vspace{0.25em}
+\vspace{0.15em}
 \begin{center}
 \begin{tikzpicture}[
-    scale=0.90, every node/.style={transform shape},
-    box/.style={rectangle, draw=boxborder, line width=0.8pt, rounded corners=4pt, minimum height=1.75cm, text width=2.85cm, align=center, font=\scriptsize},
-    arrow/.style={-{Stealth[scale=0.85]}, line width=1.1pt, draw=boxdarkblue}
+    scale=0.86, every node/.style={transform shape},
+    box/.style={rectangle, draw=boxborder, line width=0.75pt, rounded corners=4pt, minimum height=1.60cm, text width=2.90cm, align=center, font=\scriptsize},
+    arrow/.style={-{Stealth[scale=0.80]}, line width=1.0pt, draw=boxdarkblue}
 ]
 
 % 5 Blocks in a clean horizontal pipeline without text wrapping issues
 \node[box, fill=boxblue] (B1) {
     \textbf{1. Multi-Modal}\\[-0.1em]
-    \textbf{Sensing Layer}\\[0.25em]
+    \textbf{Sensing Layer}\\[0.20em]
     MPU6050: BCG / Motion\\
     BMP180: Cell Pressure\\
     SI7021: Microclimate
 };
 
-\node[box, fill=boxgreen, right=0.35cm of B1] (B2) {
+\node[box, fill=boxgreen, right=0.30cm of B1] (B2) {
     \textbf{2. Preprocessing}\\[-0.1em]
-    \textbf{\& BCG Vitals}\\[0.25em]
+    \textbf{\& BCG Vitals}\\[0.20em]
     Dual Butterworth IIR\\
     Resp: 0.1--0.5 Hz\\
     Cardiac: 0.8--3.5 Hz
 };
 
-\node[box, fill=boxpurple, right=0.35cm of B2] (B3) {
+\node[box, fill=boxpurple, right=0.30cm of B2] (B3) {
     \textbf{3. TinyML}\\[-0.1em]
-    \textbf{Classifier}\\[0.25em]
+    \textbf{Classifier}\\[0.20em]
     INT8 1D-CNN Model\\
     5 In-Bed Postures\\
     $J$-$J$ HRV \& Sleep State
 };
 
-\node[box, fill=boxorange, right=0.35cm of B3] (B4) {
+\node[box, fill=boxorange, right=0.30cm of B3] (B4) {
     \textbf{4. Closed-Loop}\\[-0.1em]
-    \textbf{PTI Engine}\\[0.25em]
+    \textbf{PTI Engine}\\[0.20em]
     Dynamic PTI Accumulator\\
     Bottoming-Out Safety\\
     Maceration Alert ($>65\%$)
 };
 
-\node[box, fill=boxblue, right=0.35cm of B4] (B5) {
+\node[box, fill=boxblue, right=0.30cm of B4] (B5) {
     \textbf{5. Actuation}\\[-0.1em]
-    \textbf{\& Telemetry}\\[0.25em]
+    \textbf{\& Telemetry}\\[0.20em]
     Zero-Crossing TRIAC\\
     Bedside OLED Display\\
     Buzzer \& BLE GATT
@@ -188,51 +197,47 @@ The end-to-end ArigiaGaurd architecture coordinates five sequential layers, from
 
 \end{tikzpicture}
 \end{center}
-\vspace{0.10em}
+\vspace{-0.10em}
 
 \noindent \textbf{Figure 1: ArigiaGaurd Edge-AI Signal Processing and Closed-Loop Control Architecture.} Raw sensor streams are filtered on-device, evaluated by the TinyML posture classifier and BCG vital sign extractor, and synthesized by the dynamic PTI engine to drive optoisolated pneumatic actuation and caregiver alerts.
 
-\newpage
-% =========================================================
-% PAGE 4
-% =========================================================
-\vspace{-0.3em}
+\vspace{0.20em}
 \begin{center}
 \begin{tikzpicture}[
-    scale=0.74, every node/.style={transform shape},
-    mcu/.style={rectangle, draw=boxdarkblue, fill=boxblue, line width=1.1pt, rounded corners=6pt, minimum height=1.70cm, text width=3.8cm, align=center, font=\small},
-    sensor/.style={rectangle, draw=boxdarkgreen, fill=boxgreen, line width=0.9pt, rounded corners=4pt, minimum height=1.30cm, text width=3.0cm, align=center, font=\scriptsize},
-    actuator/.style={rectangle, draw=boxdarkorange, fill=boxorange, line width=0.9pt, rounded corners=4pt, minimum height=1.30cm, text width=3.0cm, align=center, font=\scriptsize},
-    comm/.style={rectangle, draw=boxdarkpurple, fill=boxpurple, line width=0.9pt, rounded corners=4pt, minimum height=0.85cm, text width=3.4cm, align=center, font=\scriptsize},
-    app/.style={rectangle, draw=blue!75, fill=blue!10, line width=1.1pt, rounded corners=4pt, minimum height=0.85cm, text width=3.6cm, align=center, font=\scriptsize},
-    pwr/.style={rectangle, draw=gray!80, fill=boxgray, line width=0.9pt, rounded corners=4pt, minimum height=0.80cm, text width=3.8cm, align=center, font=\scriptsize},
-    wire/.style={line width=0.9pt, draw=gray!75},
-    i2c/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, line width=1.0pt, draw=boxdarkgreen},
-    sig/.style={-{Stealth[scale=0.85]}, line width=1.0pt, draw=boxdarkorange},
-    ble/.style={{Stealth[scale=0.85]}-{Stealth[scale=0.85]}, dashed, line width=1.1pt, draw=blue!80}
+    scale=0.63, every node/.style={transform shape},
+    mcu/.style={rectangle, draw=boxdarkblue, fill=boxblue, line width=1.0pt, rounded corners=6pt, minimum height=1.60cm, text width=3.8cm, align=center, font=\small},
+    sensor/.style={rectangle, draw=boxdarkgreen, fill=boxgreen, line width=0.85pt, rounded corners=4pt, minimum height=1.20cm, text width=3.0cm, align=center, font=\scriptsize},
+    actuator/.style={rectangle, draw=boxdarkorange, fill=boxorange, line width=0.85pt, rounded corners=4pt, minimum height=1.20cm, text width=3.0cm, align=center, font=\scriptsize},
+    comm/.style={rectangle, draw=boxdarkpurple, fill=boxpurple, line width=0.85pt, rounded corners=4pt, minimum height=0.80cm, text width=3.4cm, align=center, font=\scriptsize},
+    app/.style={rectangle, draw=blue!75, fill=blue!10, line width=1.0pt, rounded corners=4pt, minimum height=0.80cm, text width=3.6cm, align=center, font=\scriptsize},
+    pwr/.style={rectangle, draw=gray!80, fill=boxgray, line width=0.85pt, rounded corners=4pt, minimum height=0.75cm, text width=3.8cm, align=center, font=\scriptsize},
+    wire/.style={line width=0.85pt, draw=gray!75},
+    i2c/.style={{Stealth[scale=0.80]}-{Stealth[scale=0.80]}, line width=0.95pt, draw=boxdarkgreen},
+    sig/.style={-{Stealth[scale=0.80]}, line width=0.95pt, draw=boxdarkorange},
+    ble/.style={{Stealth[scale=0.80]}-{Stealth[scale=0.80]}, dashed, line width=1.0pt, draw=blue!80}
 ]
 
 % Center MCU
 \node[mcu] (core) {\textbf{MYOSA Motherboard}\\[0.15em]{\footnotesize (ESP32 Edge Core)}\\[0.20em]{\scriptsize Multi-Sensor I2C $\cdot$ TinyML $\cdot$ PTI}};
 
-% Left: Sensors (increased separation to prevent arrow label overlap)
-\node[sensor, left=2.4cm of core, yshift=1.15cm] (imu) {\textbf{MYOSA IMU Board}\\[0.18em]MPU6050 6-Axis Motion\\[0.10em]{\tiny BCG Recoil \& Posture Tilt}};
-\node[sensor, left=2.4cm of core, yshift=-1.15cm] (env) {\textbf{Pressure \& Climate}\\[0.18em]BMP180: Cell Manifold\\[0.10em]SI7021: Sacral RH \& Temp};
+% Left: Sensors
+\node[sensor, left=2.3cm of core, yshift=1.10cm] (imu) {\textbf{MYOSA IMU Board}\\[0.18em]MPU6050 6-Axis Motion\\[0.10em]{\tiny BCG Recoil \& Posture Tilt}};
+\node[sensor, left=2.3cm of core, yshift=-1.10cm] (env) {\textbf{Pressure \& Climate}\\[0.18em]BMP180: Cell Manifold\\[0.10em]SI7021: Sacral RH \& Temp};
 
 % Right: Actuators and Bedside Output
-\node[actuator, right=2.4cm of core, yshift=1.15cm] (ui) {\textbf{Local User Interface}\\[0.18em]0.96'' SSD1306 OLED Display\\[0.10em]Active Piezo Buzzer Alarm};
-\node[actuator, right=2.4cm of core, yshift=-1.15cm] (triac) {\textbf{Optoisolated TRIAC}\\[0.18em]MOC3041 Zero-Cross Driver\\[0.10em]220V/110V AC Compressor};
+\node[actuator, right=2.3cm of core, yshift=1.10cm] (ui) {\textbf{Local User Interface}\\[0.18em]0.96'' SSD1306 OLED Display\\[0.10em]Active Piezo Buzzer Alarm};
+\node[actuator, right=2.3cm of core, yshift=-1.10cm] (triac) {\textbf{Optoisolated TRIAC}\\[0.18em]MOC3041 Zero-Cross Driver\\[0.10em]220V/110V AC Compressor};
 
 % Top: Wireless Telemetry Module
-\node[comm, above=0.80cm of core] (radio) {\textbf{On-Board BLE 5.0 Radio}\\[0.10em]{\tiny 2.4 GHz Telemetry \& GATT Server}};
+\node[comm, above=0.75cm of core] (radio) {\textbf{On-Board BLE 5.0 Radio}\\[0.10em]{\tiny 2.4 GHz Telemetry \& GATT Server}};
 
-% Remote Caregiver Smartphone App (Outside enclosure, clearly above)
-\node[app, above=1.35cm of radio] (phone) {\textbf{Caregiver Mobile Dashboard}\\[0.10em]{\tiny (Android / iOS BLE Client)}};
+% Remote Caregiver Smartphone App
+\node[app, above=1.25cm of radio] (phone) {\textbf{Caregiver Mobile Dashboard}\\[0.10em]{\tiny (Android / iOS BLE Client)}};
 
 % Bottom: Power Subsystem
-\node[pwr, below=0.80cm of core] (power) {\textbf{Power Management Subsystem}\\[0.10em]{\tiny Regulated 3.3V/5V DC Bus $\cdot$ AC Mains Input}};
+\node[pwr, below=0.75cm of core] (power) {\textbf{Power Management Subsystem}\\[0.10em]{\tiny Regulated 3.3V/5V DC Bus $\cdot$ AC Mains Input}};
 
-% Connections with white knock-out background on labels to prevent ANY line intersection
+% Connections with white knock-out background on labels
 \draw[i2c] (imu.east) -- node[midway, fill=white, inner sep=2.0pt, font=\tiny\bfseries, text=boxdarkgreen] {I2C (0x68)} (core.155);
 \draw[i2c] (env.east) -- node[midway, fill=white, inner sep=2.0pt, font=\tiny\bfseries, text=boxdarkgreen] {I2C (0x77, 0x40)} (core.205);
 
@@ -245,24 +250,28 @@ The end-to-end ArigiaGaurd architecture coordinates five sequential layers, from
 \draw[wire] (power.north) -- (core.south);
 
 % Enclosure boundary around bedside hardware only
-\node[draw=gray!50, dashed, line width=0.8pt, rounded corners=7pt, fit=(imu) (env) (ui) (triac) (core) (radio) (power), inner sep=0.25cm] (enc) {};
+\node[draw=gray!50, dashed, line width=0.8pt, rounded corners=7pt, fit=(imu) (env) (ui) (triac) (core) (radio) (power), inner sep=0.22cm] (enc) {};
 \node[below=2pt of enc.south, font=\scriptsize\bfseries, color=gray!70] {Bedside Controller Enclosure (MYOSA Modular Bedside Unit)};
 
 \end{tikzpicture}
 \end{center}
-\vspace{-0.35em}
+\vspace{-0.30em}
 
 \noindent \textbf{Figure 2: MYOSA-Based ArigiaGaurd Modular Hardware System Architecture.} All modules within the dashed line are co-located in the bedside controller. The MYOSA motherboard communicates over I2C with sensors and local outputs, controls the optoisolated high-voltage compressor, and streams wireless telemetry to the caregiver app.
 
-\vspace{0.18em}
+\vspace{0.12em}
 \noindent \textbf{Longitudinal Telemetry and Caregiver Mobile Application.} ArigiaGaurd continuously broadcasts real-time vitals, posture state, elapsed turn countdown, and manifold pressures via custom Bluetooth Low Energy (BLE) characteristics. In addition, every turn event, bottoming-out warning, and maceration excursion is logged to persistent flash memory on the MYOSA motherboard. This creates an objective clinical audit trail that enables caregivers to assess protocol compliance and helps clinicians monitor rehabilitation progress.
 
+% \newpage
+% =========================================================
+% PAGE 4: Live Demonstration, Conclusion, References
+% =========================================================
 \section{Intended Live Demonstration at the Conference Venue}
 The ArigiaGaurd demonstration at the IEEE conference venue will execute across four progressive clinical stages:
 
 \noindent \textbf{Stage 1 -- Contactless Vitals and BCG Extraction.} A volunteer participant will lie supine on the mattress overlay. Within 12 seconds of motionless rest, the MPU6050 captures micro-vibrations, and the OLED display visualizes the BCG waveform alongside calculated heart rate (BPM) and respiration rate (BrPM), verifying zero-skin-contact vitals monitoring.
 
-\noindent \textbf{Stage 2 -- Real-Time TinyML Posture Recognition and Turn Tracking.} The volunteer will execute postural transitions (Supine $\rightarrow$ Right Lateral 30° $\rightarrow$ Fowler's). The on-device TinyML model will classify and display each posture within 200~ms. When an overdue turn timer expires, the buzzer sounds; a valid $30^\circ$ voluntary turn resets the timer automatically, confirming autonomous compliance tracking.
+\noindent \textbf{Stage 2 -- Real-Time TinyML Posture Recognition and Turn Tracking.} The volunteer will execute postural transitions (Supine $\rightarrow$ Right Lateral $30^\circ$ $\rightarrow$ Fowler's). The on-device TinyML model will classify and display each posture within 200~ms. When an overdue turn timer expires, the buzzer sounds; a valid $30^\circ$ voluntary turn resets the timer automatically, confirming autonomous compliance tracking.
 
 \noindent \textbf{Stage 3 -- Closed-Loop Pressure Alternation and Bottoming-Out Failsafe.} The demonstrator will initiate active pressure redistribution. The optoisolated TRIAC will energize the compressor to inflate Bank A and vent Bank B, measured by the BMP180 sensor. Introducing an artificial air leak will trigger a ``Bottoming-Out Hazard'' warning on the OLED and mobile app within 3.2 seconds, automatically adjusting TRIAC duty cycle to restore safe pressure.
 
@@ -271,43 +280,39 @@ The ArigiaGaurd demonstration at the IEEE conference venue will execute across f
 \section{Conclusion}
 ArigiaGaurd provides an autonomous, accessible, and clinically grounded solution to the persistent challenge of pressure injury prevention in bedridden individuals. By unifying contactless BCG vitals extraction, on-device TinyML posture classification, closed-loop pressure-time regulation, and optoisolated mains safety entirely on the modular MYOSA Mini platform, the prototype demonstrates that comprehensive ambient intelligence can be deployed without costly clinical hardware.
 
-\vspace{0.10em}
+\vspace{0.06em}
 \noindent Complete source code, schematics, and mobile application files are openly available at: \url{https://github.com/5636mohamed/IEEE-MYOSA-ArigiaGaurd}.
 
-\newpage
-% =========================================================
-% PAGE 5
-% =========================================================
+\vspace{0.12em}
 \section*{References}
-\vspace{0.20em}
+\vspace{-0.25em}
 
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}, itemsep=0.10em, parsep=0pt, topsep=0.08em]
+    \small
     \sloppy
-    \setlength{\itemsep}{0.50em}
-    \setlength{\parskip}{0pt}
-    \item[{[1]}] J.~Kottner, J.~Cuddigan, K.~Carville, and E.~Haesler, ``A closer look at the 2019 International Guideline on the prevention and treatment of pressure ulcers/injuries,'' \textit{Journal of Tissue Viability}, vol.~29, no.~4, pp.~228--231, 2020. doi: 10.1016/j.jtv.2020.09.003
+    \item J.~Kottner, J.~Cuddigan, K.~Carville, and E.~Haesler, ``A closer look at the 2019 International Guideline on the prevention and treatment of pressure ulcers/injuries,'' \textit{Journal of Tissue Viability}, vol.~29, no.~4, pp.~228--231, 2020. doi: 10.1016/j.jtv.2020.09.003
     
-    \item[{[2]}] A.~Gefen, D.~M.~Brienza, J.~Cuddigan, E.~Haesler, and J.~Kottner, ``Our contemporary understanding of the aetiology of pressure ulcers/pressure injuries,'' \textit{International Wound Journal}, vol.~19, no.~3, pp.~692--704, 2022. doi: 10.1111/iwj.13667
+    \item A.~Gefen, D.~M.~Brienza, J.~Cuddigan, E.~Haesler, and J.~Kottner, ``Our contemporary understanding of the aetiology of pressure ulcers/pressure injuries,'' \textit{International Wound Journal}, vol.~19, no.~3, pp.~692--704, 2022. doi: 10.1111/iwj.13667
     
-    \item[{[3]}] C.~Shi, J.~C.~Dumville, N.~Cullum, S.~Rhodes, A.~Jammali-Blasi, and E.~McInnes, ``Alternating pressure (active) air surfaces for preventing pressure ulcers,'' \textit{Cochrane Database of Systematic Reviews}, no.~5, Art. no.~CD013620, 2021. doi: 10.1002/14651858.CD013620.pub2
+    \item C.~Shi, J.~C.~Dumville, N.~Cullum, S.~Rhodes, A.~Jammali-Blasi, and E.~McInnes, ``Alternating pressure (active) air surfaces for preventing pressure ulcers,'' \textit{Cochrane Database of Systematic Reviews}, no.~5, Art. no.~CD013620, 2021. doi: 10.1002/14651858.CD013620.pub2
     
-    \item[{[4]}] P.~Avsar, Z.~Moore, D.~Patton, T.~O'Connor, A.~M.~Budri, and L.~Nugent, ``Repositioning for preventing pressure ulcers: A systematic review and meta-analysis,'' \textit{Journal of Wound Care}, vol.~29, no.~9, pp.~496--508, 2020. doi: 10.12968/jowc.2020.29.9.496
+    \item P.~Avsar, Z.~Moore, D.~Patton, T.~O'Connor, A.~M.~Budri, and L.~Nugent, ``Repositioning for preventing pressure ulcers: A systematic review and meta-analysis,'' \textit{Journal of Wound Care}, vol.~29, no.~9, pp.~496--508, 2020. doi: 10.12968/jowc.2020.29.9.496
     
-    \item[{[5]}] J.~Kottner, J.~Black, E.~Call, A.~Gefen, and N.~Santamaria, ``Microclimate: A critical review in the context of pressure ulcer prevention,'' \textit{Clinical Biomechanics}, vol.~59, pp.~62--70, 2018. doi: 10.1016/j.clinbiomech.2018.09.010
+    \item J.~Kottner, J.~Black, E.~Call, A.~Gefen, and N.~Santamaria, ``Microclimate: A critical review in the context of pressure ulcer prevention,'' \textit{Clinical Biomechanics}, vol.~59, pp.~62--70, 2018. doi: 10.1016/j.clinbiomech.2018.09.010
     
-    \item[{[6]}] O.~T.~Inan, P.-F.~Migeotte, K.-S.~Park, M.~Etemadi, K.~Tavakolian, R.~Casanella, J.~Zanetti, J.~Tank, I.~Funtova, G.~K.~Prisk, and M.~Di Rienzo, ``Ballistocardiography and seismocardiography: A review of recent advances,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~19, no.~4, pp.~1414--1427, 2015. doi: 10.1109/JBHI.2014.2361732
+    \item O.~T.~Inan, P.-F.~Migeotte, K.-S.~Park, M.~Etemadi, K.~Tavakolian, R.~Casanella, J.~Zanetti, J.~Tank, I.~Funtova, G.~K.~Prisk, and M.~Di Rienzo, ``Ballistocardiography and seismocardiography: A review of recent advances,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~19, no.~4, pp.~1414--1427, 2015. doi: 10.1109/JBHI.2014.2361732
     
-    \item[{[7]}] C.~Br\"user, K.~Stadlthanner, S.~de Waele, and S.~Leonhardt, ``Adaptive heartbeat modeling for beat-to-beat heart rate measurement in ballistocardiograms,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~19, no.~2, pp.~454--463, 2015. doi: 10.1109/JBHI.2014.2314144
+    \item C.~Br\"{u}ser, K.~Stadlthanner, S.~de Waele, and S.~Leonhardt, ``Adaptive heartbeat modeling for beat-to-beat heart rate measurement in ballistocardiograms,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~19, no.~2, pp.~454--463, 2015. doi: 10.1109/JBHI.2014.2314144
     
-    \item[{[8]}] G.~Matar, J.-M.~Lina, and G.~Kaddoum, ``Artificial neural network for in-bed posture classification using bed-sheet pressure sensors,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~24, no.~1, pp.~125--136, 2020. doi: 10.1109/JBHI.2019.2899070
+    \item G.~Matar, J.-M.~Lina, and G.~Kaddoum, ``Artificial neural network for in-bed posture classification using bed-sheet pressure sensors,'' \textit{IEEE Journal of Biomedical and Health Informatics}, vol.~24, no.~1, pp.~125--136, 2020. doi: 10.1109/JBHI.2019.2899070
     
-    \item[{[9]}] G.~Peruzzi, A.~Galli, G.~Giorgi, and A.~Pozzebon, ``Sleep posture detection via embedded machine learning on a reduced set of pressure sensors,'' \textit{Sensors}, vol.~25, no.~2, p.~458, 2025. doi: 10.3390/s25020458
+    \item G.~Peruzzi, A.~Galli, G.~Giorgi, and A.~Pozzebon, ``Sleep posture detection via embedded machine learning on a reduced set of pressure sensors,'' \textit{Sensors}, vol.~25, no.~2, p.~458, 2025. doi: 10.3390/s25020458
     
-    \item[{[10]}] P.~Warden and D.~Situnayake, \textit{TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers}. Sebastopol, CA: O'Reilly Media, 2019.
+    \item P.~Warden and D.~Situnayake, \textit{TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers}. Sebastopol, CA: O'Reilly Media, 2019.
     
-    \item[{[11]}] M.~J.~G.~Pezzolesi, D.~L.~Bader, and C.~W.~J.~Oomens, ``Deformation-induced damage in skeletal muscle tissue: An in vitro model for deep tissue injury,'' \textit{Journal of Biomechanics}, vol.~42, no.~14, pp.~2221--2228, 2009. doi: 10.1016/j.jbiomech.2009.06.050
+    \item M.~J.~G.~Pezzolesi, D.~L.~Bader, and C.~W.~J.~Oomens, ``Deformation-induced damage in skeletal muscle tissue: An in vitro model for deep tissue injury,'' \textit{Journal of Biomechanics}, vol.~42, no.~14, pp.~2221--2228, 2009. doi: 10.1016/j.jbiomech.2009.06.050
     
-    \item[{[12]}] J.~L.~Lever, K.~Constantinescu, and S.~Patel, ``Wearable and unobtrusive sensor systems for bedridden patient monitoring: A review,'' \textit{IEEE Reviews in Biomedical Engineering}, vol.~14, pp.~122--135, 2021. doi: 10.1109/RBME.2020.3001234
+    \item J.~L.~Lever, K.~Constantinescu, and S.~Patel, ``Wearable and unobtrusive sensor systems for bedridden patient monitoring: A review,'' \textit{IEEE Reviews in Biomedical Engineering}, vol.~14, pp.~122--135, 2021. doi: 10.1109/RBME.2020.3001234
 \end{enumerate}
 
 \end{document}
